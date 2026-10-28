@@ -1,3 +1,12 @@
+// Support Vercel Postgres / Prisma Postgres / Custom prefix fallbacks
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL =
+    process.env.STORAGE_URL ||
+    process.env.POSTGRES_PRISMA_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.PRISMA_DATABASE_URL
+}
+
 import { PrismaClient } from "@prisma/client"
 
 const globalForPrisma = globalThis as unknown as {
