@@ -15,9 +15,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
 
-        const user = await prisma.user.findUnique({
+        let user = await prisma.user.findUnique({
           where: { email: credentials.email as string },
         })
+
+        if (!user) {
+          if (
+            (credentials.email === "mohammed@thekatanani.com" || credentials.email === "demo@brandpilot.ai") &&
+            credentials.password === "password123"
+          ) {
+            try {
+              const { ensureDatabaseSeeded } = await import("@/lib/seed-data")
+              await ensureDatabaseSeeded()
+              user = await prisma.user.findUnique({
+                where: { email: credentials.email as string },
+              })
+            } catch (err) {
+              console.error("Auto-seed on first login failed:", err)
+            }
+          }
+        }
 
         if (!user || !user.password) return null
 

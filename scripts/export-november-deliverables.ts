@@ -60,12 +60,12 @@ let copyMd = `# حملة محتوى نوفمبر 2026 الكاملة - BrandPilo
 
 for (const topic of novemberPack.topics) {
   copyMd += `
-## الموضوع ${topic.dayNumber ?? topic.key}: ${topic.title}
-- **العنوان/المفتاح:** ${topic.key}
+## الموضوع: ${topic.title}
+- **المفتاح:** ${topic.key}
 - **الموضوع الرئيسي:** ${topic.theme}
 - **تاريخ النشر المقترح:** ${topic.date}
 - **النوع:** ${topic.sourceType}
-- **الرابط:** ${topic.url || "منشور مستقل (لا يحتاج رابط)"}
+- **الرابط:** ${topic.sourceUrl || "منشور مستقل (لا يحتاج رابط)"}
 
 `
   for (const v of topic.versions) {

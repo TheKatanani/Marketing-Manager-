@@ -9,7 +9,7 @@ export async function getCalendarData() {
     const user = await getActiveUser()
     if (!user) return { posts: [], articles: [] }
 
-    const [posts, articles] = await Promise.all([
+    let [posts, articles] = await Promise.all([
       prisma.post.findMany({
         where: {
           userId: user.id,
@@ -50,6 +50,30 @@ export async function getCalendarData() {
         orderBy: { scheduledFor: "asc" },
       }),
     ])
+
+    if (posts.length === 0) {
+      try {
+        const { importNovemberPack } = await import("@/lib/editorial/service")
+        await importNovemberPack(user.id)
+        const updated = await prisma.post.findMany({
+          where: { userId: user.id },
+          include: {
+            versions: true,
+            article: { select: { id: true, title: true, slug: true, canonicalUrl: true } },
+            idea: { select: { title: true, contentPillar: true } },
+          },
+          orderBy: { scheduledFor: "asc" },
+        })
+        const updatedArticles = await prisma.blogPost.findMany({
+          where: { userId: user.id },
+          select: { id: true, title: true, slug: true, canonicalUrl: true, language: true, category: true, scheduledFor: true, status: true },
+          orderBy: { scheduledFor: "asc" },
+        })
+        return { posts: updated, articles: updatedArticles }
+      } catch (err) {
+        console.warn("Could not auto-import november pack in calendar:", err)
+      }
+    }
 
     return { posts, articles }
   } catch (error) {

@@ -335,93 +335,14 @@ export async function seedDatabase() {
     createdProjects.push(proj)
   }
 
-  // 4. Marketing Campaigns
-  const campaign1 = await prisma.campaign.create({
-    data: {
-      userId: user.id,
-      name: "استقطاب عقود مشاريع Next.js ومتاجر Shopify الخليجية",
-      objective:
-        "استهداف أصحاب الشركات ورواد الأعمال في السعودية والخليج الباحثين عن تطوير مخصص عالي الأداء أو متاجر شوبيفاي احترافية بأدوات ضمان وأتمتة مخصصة.",
-      status: "ACTIVE",
-      startDate: new Date("2026-10-01"),
-      endDate: new Date("2026-12-31"),
-    },
-  })
-
-  // 5. Content Ideas
-  const idea1 = await prisma.contentIdea.create({
-    data: {
-      userId: user.id,
-      projectId: createdProjects[0].id,
-      campaignId: campaign1.id,
-      title: "عندما لا تكفي قوالب شوبيفاي: كواليس بناء تطبيق ضمان مخصص بـ Remix",
-      hook: "أغلب المتاجر تفشل عند التوسع الإقليمي لأنها تحشر كل شيء في قوالب جاهزة. إليك كيف صممنا تطبيق Remix متصلاً بنظام المخزون وبوابات واتساب لحل معضلة الضمان في العراق.",
-      targetAudience: "مؤسسو متاجر إلكترونية ومدراء التجارة الرقمية في الخليج والعراق",
-      contentPillar: "الأداة الصحيحة للهدف الصحيح: متى تختار Next.js ومتى تختار Shopify أو WordPress؟",
-      status: "APPROVED",
-      sourceNotes: "دراسة حالة مشروع جيباس العراق الموثقة في thekatanani.com",
-    },
-  })
-
-  // 6. Posts
-  const post1 = await prisma.post.create({
-    data: {
-      userId: user.id,
-      campaignId: campaign1.id,
-      ideaId: idea1.id,
-      title: "كواليس شوبيفاي العراق: بناء تطبيق Remix مخصص للضمان والولاء والمخزون",
-      status: "APPROVED",
-      scheduledFor: new Date("2026-10-27T10:00:00Z"),
-    },
-  })
-
-  await prisma.postVersion.create({
-    data: {
-      postId: post1.id,
-      platform: "LINKEDIN",
-      content: `أغلب المتاجر تفشل عند التوسع الإقليمي لأنها تحشر كل شيء في قوالب شوبيفاي الجاهزة.\n\nعندما عملنا على تطوير متجر "جيباس العراق"، كان التحدي يتجاوز مجرد عرض المنتجات:\n1. نظام ضمان رقمي معقد للأجهزة الكهربائية.\n2. مزامنة لحظية للمخزون مع Zoho Inventory.\n3. إرسال تنبيهات وفواتير تلقائية عبر الواتساب.\n\nالحل الهندسي: تطبيق Remix مخصص بـ PostgreSQL و GraphQL Admin API.\nالنتيجة: سرعة خارقة، وأتمتة كاملة، ومزامنة خالية من الأخطاء.`,
-      hashtags: JSON.stringify(["Nextjs", "Shopify", "Remix", "WebDevelopment", "KatananiTech"]),
-      status: "APPROVED",
-    },
-  })
-
-  await prisma.postVersion.create({
-    data: {
-      postId: post1.id,
-      platform: "INSTAGRAM",
-      content: `عندما تحتاج علامتك أكثر من مجرد قالب شوبيفاي عادي ⚡\nكيف طورنا تطبيق Remix مخصص لمتجر جيباس العراق لإدارة الضمان والمخزون والواتساب. اسحب الشاشة لقراءة دراسة الحالة كاملة ⬅️`,
-      hashtags: JSON.stringify(["شوبيفاي", "متاجر_إلكترونية", "برمجة_مخصصة", "محمد_القطناني"]),
-      status: "APPROVED",
-      visualPrompt:
-        "Modern visual slide deck in Petroleum Blue (#0A4D68) and Sky Blue (#D2E5F0), showing clean Shopify API integration and mobile notifications.",
-      carouselSlides: JSON.stringify([
-        {
-          slideNumber: 1,
-          title: "لماذا لا تكفي القوالب الجاهزة للمتاجر الكبيرة؟",
-          bodyText: "كواليس تطوير متجر جيباس العراق وتطبيق الضمان المخصص بـ Remix و Shopify API.",
-          visualCue: "عنوان رئيسي جريء مع لوجو شوبيفاي",
-        },
-        {
-          slideNumber: 2,
-          title: "التحدي: 3 أنظمة منفصلة تحتاج مزامنة لحظية",
-          bodyText: "متجر شوبيفاي + نظام مخازن Zoho Inventory + إشعارات واتساب فورية لكل مشتري.",
-          visualCue: "مخطط انسيابي يوضح تدفق البيانات",
-        },
-        {
-          slideNumber: 3,
-          title: "الحل: تطبيق Remix مستقل عبر GraphQL API",
-          bodyText: "بناء باك-إند مخصص بـ PostgreSQL يتيح للعميل استعلام فوري عن حالة ضمان جهازه.",
-          visualCue: "لقطة شاشة للوحة تحكم الضمان السريعة",
-        },
-        {
-          slideNumber: 4,
-          title: "النتيجة: سرعة خارقة وأتمتة 100%",
-          bodyText: "توفير آلاف الساعات اليدوية، وتسجيل الضمان خلال ثوانٍ، وتحديث المخزون آلياً.",
-          visualCue: "بطاقة مقاييس خضراء تبرز أرقام النجاح",
-        },
-      ]),
-    },
-  })
+  // 4. Import November 2026 Authentic Campaign Pack (22 Topics, 50 Multi-platform Versions, 4 Bilingual Articles)
+  try {
+    const { importNovemberPack } = await import("@/lib/editorial/service")
+    await importNovemberPack(user.id)
+    console.log("November 2026 editorial pack imported successfully during seed.")
+  } catch (err) {
+    console.error("Could not import November pack during seed:", err)
+  }
 
   // 7. Seed Real Leads
   const realLeads = [
