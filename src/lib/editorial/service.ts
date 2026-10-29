@@ -1,7 +1,50 @@
 import { prisma } from "@/lib/prisma"
 import { novemberPack } from "./november-2026"
 
+let schemaEnsured = false
+
+export async function ensureDatabaseSchema() {
+  if (schemaEnsured) return
+  try {
+    const statements = [
+      `ALTER TABLE "Campaign" ADD COLUMN IF NOT EXISTS "planKey" TEXT;`,
+      `ALTER TABLE "Campaign" ADD COLUMN IF NOT EXISTS "strategy" TEXT;`,
+      `CREATE UNIQUE INDEX IF NOT EXISTS "Campaign_userId_planKey_key" ON "Campaign"("userId", "planKey");`,
+
+      `ALTER TABLE "Post" ADD COLUMN IF NOT EXISTS "sourceType" TEXT DEFAULT 'STANDALONE';`,
+      `ALTER TABLE "Post" ADD COLUMN IF NOT EXISTS "sourceUrl" TEXT;`,
+      `ALTER TABLE "Post" ADD COLUMN IF NOT EXISTS "sourceLabel" TEXT;`,
+      `ALTER TABLE "Post" ADD COLUMN IF NOT EXISTS "articleId" TEXT;`,
+      `ALTER TABLE "Post" ADD COLUMN IF NOT EXISTS "weekTheme" TEXT;`,
+
+      `ALTER TABLE "PostVersion" ADD COLUMN IF NOT EXISTS "language" TEXT DEFAULT 'ar';`,
+      `ALTER TABLE "PostVersion" ADD COLUMN IF NOT EXISTS "scheduledFor" TIMESTAMP(3);`,
+      `ALTER TABLE "PostVersion" ADD COLUMN IF NOT EXISTS "publishedAt" TIMESTAMP(3);`,
+      `ALTER TABLE "PostVersion" ADD COLUMN IF NOT EXISTS "publishedUrl" TEXT;`,
+      `ALTER TABLE "PostVersion" ADD COLUMN IF NOT EXISTS "assetPaths" TEXT;`,
+
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "campaignId" TEXT;`,
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "language" TEXT DEFAULT 'ar';`,
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "canonicalUrl" TEXT;`,
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "coverImage" TEXT;`,
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "scheduledFor" TIMESTAMP(3);`,
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "seoTitle" TEXT;`,
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "seoDescription" TEXT;`,
+      `ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "sources" TEXT;`,
+      `CREATE UNIQUE INDEX IF NOT EXISTS "BlogPost_userId_slug_key" ON "BlogPost"("userId", "slug");`,
+    ]
+
+    for (const sql of statements) {
+      await prisma.$executeRawUnsafe(sql).catch(() => {})
+    }
+    schemaEnsured = true
+  } catch (err) {
+    console.warn("[service] Schema ensure notice:", err)
+  }
+}
+
 export async function importNovemberPack(userId: string) {
+  await ensureDatabaseSchema()
   return prisma.$transaction(async tx => {
     const p=novemberPack
     const campaign=await tx.campaign.upsert({where:{userId_planKey:{userId,planKey:p.key}},update:{},create:{userId,planKey:p.key,name:p.name,objective:p.objective,startDate:new Date(p.startsAt),endDate:new Date(p.endsAt),status:"PLANNING",strategy:JSON.stringify(p.strategy)}})
@@ -19,6 +62,7 @@ export async function importNovemberPack(userId: string) {
 }
 
 export async function getEditorialCampaign(userId: string) {
+  await ensureDatabaseSchema()
   return prisma.campaign.findUnique({where:{userId_planKey:{userId,planKey:novemberPack.key}},include:{posts:{orderBy:{scheduledFor:"asc"},include:{versions:{orderBy:{scheduledFor:"asc"}},article:true}},blogPosts:{orderBy:[{scheduledFor:"asc"},{language:"asc"}]}}})
 }
 

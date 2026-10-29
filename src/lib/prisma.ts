@@ -2,24 +2,33 @@ import { PrismaClient } from "@prisma/client"
 
 // Dynamic resolver: Find the real PostgreSQL URL regardless of prefix
 function resolveDatabaseUrl(): string | undefined {
-  // If DATABASE_URL is already a valid postgres string, use it
+  // Prioritize direct postgresql:// or postgres:// connection strings
   if (
     process.env.DATABASE_URL &&
     (process.env.DATABASE_URL.startsWith("postgres://") ||
-      process.env.DATABASE_URL.startsWith("postgresql://") ||
-      process.env.DATABASE_URL.startsWith("prisma+postgres://"))
+      process.env.DATABASE_URL.startsWith("postgresql://"))
   ) {
     return process.env.DATABASE_URL
   }
 
-  // Otherwise search across all environment variables for any PostgreSQL connection string
   for (const [key, val] of Object.entries(process.env)) {
     if (
       val &&
-      (val.startsWith("postgres://") ||
-        val.startsWith("postgresql://") ||
-        val.startsWith("prisma+postgres://"))
+      (val.startsWith("postgres://") || val.startsWith("postgresql://"))
     ) {
+      return val
+    }
+  }
+
+  if (
+    process.env.DATABASE_URL &&
+    process.env.DATABASE_URL.startsWith("prisma+postgres://")
+  ) {
+    return process.env.DATABASE_URL
+  }
+
+  for (const [key, val] of Object.entries(process.env)) {
+    if (val && val.startsWith("prisma+postgres://")) {
       return val
     }
   }
