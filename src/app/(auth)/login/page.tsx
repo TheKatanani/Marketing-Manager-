@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Rocket, Lock, Mail, ArrowRight, AlertCircle, Sparkles } from "lucide-react"
 import { useLanguage } from "@/lib/i18n"
+import { signIn } from "next-auth/react"
+import { loginWithCredentials, loginAsDirector } from "@/actions/auth-actions"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -20,21 +22,57 @@ export default function LoginPage() {
     setError(null)
 
     try {
-      router.push("/dashboard")
-      router.refresh()
+      const res = await signIn("credentials", {
+        email: email.trim(),
+        password: password.trim(),
+        redirect: false,
+      })
+
+      if (res?.error) {
+        // Fallback to server action
+        const formData = new FormData()
+        formData.append("email", email.trim())
+        formData.append("password", password.trim())
+        const saRes = await loginWithCredentials(formData)
+        if (saRes?.error) {
+          setError(isRtl ? "بيانات الدخول غير صحيحة. يرجى التأكد من البريد وكلمة المرور." : "Invalid credentials")
+          setLoading(false)
+          return
+        }
+      }
+
+      window.location.href = "/dashboard"
     } catch (err: unknown) {
+      console.error("Login failed:", err)
       setError(isRtl ? "فشل تسجيل الدخول. يرجى التحقق من البيانات." : "Sign in failed. Please check credentials.")
       setLoading(false)
     }
   }
 
-  const handleDemoSignIn = () => {
-    setEmail("mohammed@thekatanani.com")
-    setPassword("password123")
+  const handleDemoSignIn = async () => {
     setLoading(true)
-    setTimeout(() => {
-      router.push("/dashboard")
-    }, 400)
+    setError(null)
+    try {
+      const res = await signIn("credentials", {
+        email: "mohammed@thekatanani.com",
+        password: "password123",
+        redirect: false,
+      })
+
+      if (res?.error) {
+        const saRes = await loginAsDirector()
+        if (saRes?.error) {
+          setError(isRtl ? "فشل الدخول التلقائي" : "Auto sign-in failed")
+          setLoading(false)
+          return
+        }
+      }
+
+      window.location.href = "/dashboard"
+    } catch (err) {
+      console.error("Demo login error:", err)
+      window.location.href = "/dashboard"
+    }
   }
 
   return (

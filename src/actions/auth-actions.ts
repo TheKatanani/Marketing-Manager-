@@ -39,6 +39,41 @@ export async function registerUser(formData: { email: string; password: string; 
   }
 }
 
+import { signIn } from "@/lib/auth"
+import { AuthError } from "next-auth"
+
+export async function loginWithCredentials(formData: FormData) {
+  try {
+    const email = (formData.get("email") as string)?.trim()
+    const password = (formData.get("password") as string)?.trim()
+    await signIn("credentials", {
+      email,
+      password,
+      redirectTo: "/dashboard",
+    })
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return { error: "بيانات الدخول غير صحيحة أو الحساب غير موجود" }
+    }
+    throw error
+  }
+}
+
+export async function loginAsDirector() {
+  try {
+    await signIn("credentials", {
+      email: "mohammed@thekatanani.com",
+      password: "password123",
+      redirectTo: "/dashboard",
+    })
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return { error: "فشل الدخول التلقائي" }
+    }
+    throw error
+  }
+}
+
 export async function getCurrentUser() {
   try {
     let user = await prisma.user.findFirst({
