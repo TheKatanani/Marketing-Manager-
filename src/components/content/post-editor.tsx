@@ -106,6 +106,9 @@ export function PostEditor({ post }: PostEditorProps) {
     if (res.success) {
       setSavedSuccess(true)
       setTimeout(() => setSavedSuccess(false), 2500)
+    } else {
+      setStatusMessage(res.error || (isRtl ? "فشل حفظ التعديلات" : "Failed to save changes"))
+      setTimeout(() => setStatusMessage(null), 4000)
     }
   }
 
@@ -356,8 +359,8 @@ export function PostEditor({ post }: PostEditorProps) {
                     MK
                   </div>
                   <div>
-                    <div className="font-bold text-[#2B3451]">Mohammed Katanani</div>
-                    <div className="text-[10px] text-[#5E6C8E]">Senior Full-Stack & Next.js Architect</div>
+                    <div className="font-bold text-[#2B3451]">Mohammed Katanani (محمد القطناني)</div>
+                    <div className="text-[10px] text-[#5E6C8E]">{isRtl ? "مطور ويب | Next.js · React · Shopify · WordPress" : "Web Developer | Next.js · React · Shopify · WordPress"}</div>
                   </div>
                 </div>
 

@@ -1,286 +1,419 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState, useMemo } from "react"
 import { useRouter } from "next/navigation"
-import { schedulePost, unschedulePost } from "@/actions/calendar-actions"
 import {
   Calendar as CalendarIcon,
   Clock,
-  CheckCircle,
-  Plus,
-  Trash2,
-  ExternalLink,
   ChevronLeft,
   ChevronRight,
-  ArrowRight,
+  Filter,
+  ExternalLink,
+  BookOpen,
+  Share2,
+  Sparkles,
+  Info,
 } from "lucide-react"
 import { LinkedInIcon, InstagramIcon, XTwitterIcon } from "@/components/ui/platform-icons"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 import { useLanguage } from "@/lib/i18n"
 
-interface CalendarPost {
+interface CalendarItem {
   id: string
+  type: "POST" | "ARTICLE"
+  platform?: "LINKEDIN" | "INSTAGRAM" | "X"
   title: string
+  scheduledFor: Date
   status: string
-  scheduledFor: Date | string | null
-  idea?: {
-    title: string
-    contentPillar: string
-  } | null
-  versions: {
-    platform: string
-  }[]
+  weekTheme?: string | null
+  canonicalUrl?: string | null
+  content?: string
 }
 
 interface CalendarViewProps {
-  posts: CalendarPost[]
+  posts: any[]
+  articles?: any[]
 }
 
-export function CalendarView({ posts }: CalendarViewProps) {
+export function CalendarView({ posts, articles = [] }: CalendarViewProps) {
   const router = useRouter()
   const { isRtl } = useLanguage()
-  const [schedulingId, setSchedulingId] = useState<string | null>(null)
-  const [selectedDate, setSelectedDate] = useState("2026-10-26T10:00")
-  const [submitting, setSubmitting] = useState(false)
 
-  // Current Week days (Oct 26 - Nov 1, 2026)
-  const days = [
-    { name: isRtl ? "الإثنين" : "Mon", dateStr: "2026-10-26", label: "Oct 26" },
-    { name: isRtl ? "الثلاثاء" : "Tue", dateStr: "2026-10-27", label: "Oct 27" },
-    { name: isRtl ? "الأربعاء" : "Wed", dateStr: "2026-10-28", label: "Oct 28" },
-    { name: isRtl ? "الخميس" : "Thu", dateStr: "2026-10-29", label: "Oct 29" },
-    { name: isRtl ? "الجمعة" : "Fri", dateStr: "2026-10-30", label: "Oct 30" },
-    { name: isRtl ? "السبت" : "Sat", dateStr: "2026-10-31", label: "Oct 31" },
-    { name: isRtl ? "الأحد" : "Sun", dateStr: "2026-11-01", label: "Nov 01" },
-  ]
+  // Default to November 2026
+  const [currentYear, setCurrentYear] = useState(2026)
+  const [currentMonth, setCurrentMonth] = useState(10) // 0-indexed: 10 = November
+  const [selectedChannel, setSelectedChannel] = useState<string>("ALL")
+  const [activeItem, setActiveItem] = useState<CalendarItem | null>(null)
+  const [viewMode, setViewMode] = useState<"MONTH" | "WEEK">("MONTH")
 
-  const scheduledPosts = posts.filter((p) => p.scheduledFor)
-  const unscheduledPosts = posts.filter((p) => !p.scheduledFor)
+  // Convert posts and articles into flattened scheduled calendar items
+  const calendarItems: CalendarItem[] = useMemo(() => {
+    const items: CalendarItem[] = []
 
-  const handleScheduleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!schedulingId) return
+    // 1. Social post versions
+    for (const post of posts) {
+      if (post.versions && post.versions.length > 0) {
+        for (const v of post.versions) {
+          const d = v.scheduledFor || post.scheduledFor
+          if (d) {
+            items.push({
+              id: v.id,
+              type: "POST",
+              platform: v.platform,
+              title: post.title,
+              scheduledFor: new Date(d),
+              status: v.status || post.status,
+              weekTheme: post.weekTheme,
+              content: v.content,
+            })
+          }
+        }
+      } else if (post.scheduledFor) {
+        items.push({
+          id: post.id,
+          type: "POST",
+          title: post.title,
+          scheduledFor: new Date(post.scheduledFor),
+          status: post.status,
+          weekTheme: post.weekTheme,
+        })
+      }
+    }
 
-    setSubmitting(true)
-    const res = await schedulePost(schedulingId, selectedDate)
-    setSubmitting(false)
+    // 2. Portfolio Articles
+    for (const art of articles) {
+      if (art.scheduledFor) {
+        items.push({
+          id: art.id,
+          type: "ARTICLE",
+          title: `${art.title} (${art.language?.toUpperCase() || "AR"})`,
+          scheduledFor: new Date(art.scheduledFor),
+          status: art.status || "PLANNED",
+          canonicalUrl: art.canonicalUrl,
+        })
+      }
+    }
 
-    if (res.success) {
-      setSchedulingId(null)
-      router.refresh()
+    return items
+  }, [posts, articles])
+
+  // Helper to format date in Asia/Hebron timezone
+  const getHebronDateParts = (date: Date) => {
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Hebron",
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: false,
+    })
+    const parts = formatter.formatToParts(date)
+    const y = Number(parts.find((p) => p.type === "year")?.value)
+    const m = Number(parts.find((p) => p.type === "month")?.value) - 1
+    const d = Number(parts.find((p) => p.type === "day")?.value)
+    const hour = parts.find((p) => p.type === "hour")?.value || "00"
+    const minute = parts.find((p) => p.type === "minute")?.value || "00"
+    return { y, m, d, timeStr: `${hour}:${minute}` }
+  }
+
+  // Filter items by channel
+  const filteredItems = useMemo(() => {
+    return calendarItems.filter((item) => {
+      if (selectedChannel === "ALL") return true
+      if (selectedChannel === "ARTICLE") return item.type === "ARTICLE"
+      return item.platform === selectedChannel
+    })
+  }, [calendarItems, selectedChannel])
+
+  // Month navigation helpers
+  const handlePrevMonth = () => {
+    if (currentMonth === 0) {
+      setCurrentMonth(11)
+      setCurrentYear((y) => y - 1)
+    } else {
+      setCurrentMonth((m) => m - 1)
     }
   }
 
-  const handleUnschedule = async (postId: string) => {
-    await unschedulePost(postId)
-    router.refresh()
+  const handleNextMonth = () => {
+    if (currentMonth === 11) {
+      setCurrentMonth(0)
+      setCurrentYear((y) => y + 1)
+    } else {
+      setCurrentMonth((m) => m + 1)
+    }
   }
 
+  const handleResetNovember = () => {
+    setCurrentYear(2026)
+    setCurrentMonth(10) // November 2026
+  }
+
+  // Month Calendar Days Grid
+  const monthData = useMemo(() => {
+    const firstDayOfMonth = new Date(currentYear, currentMonth, 1)
+    const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0)
+    const daysInMonth = lastDayOfMonth.getDate()
+
+    // Sunday = 0, Monday = 1, ...
+    // Let's start week on Sunday (or Monday)
+    const startingDayOfWeek = firstDayOfMonth.getDay() // 0 is Sunday
+
+    const days = []
+    for (let i = 0; i < startingDayOfWeek; i++) {
+      days.push({ dayNumber: null, isCurrentMonth: false })
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      days.push({ dayNumber: d, isCurrentMonth: true })
+    }
+
+    return days
+  }, [currentYear, currentMonth])
+
+  // Week days names
+  const weekDayNames = isRtl
+    ? ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
+    : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+  const monthName = new Intl.DateTimeFormat(isRtl ? "ar-EG" : "en-US", {
+    month: "long",
+    year: "numeric",
+  }).format(new Date(currentYear, currentMonth, 1))
+
   return (
-    <div className="space-y-8">
-      {/* Week Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-3">
-        {days.map((day) => {
-          // Find posts scheduled for this day
-          const dayPosts = scheduledPosts.filter((p) => {
-            if (!p.scheduledFor) return false
-            const d = new Date(p.scheduledFor).toISOString().slice(0, 10)
-            return d === day.dateStr
-          })
-
-          return (
-            <div
-              key={day.dateStr}
-              className="bg-white border border-[#D2E5F0] rounded-2xl p-4 min-h-[260px] flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow"
+    <div className="space-y-6">
+      {/* Calendar Controls & Filter Bar */}
+      <div className="bg-white p-4 rounded-2xl border border-[#D2E5F0] flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+        {/* Navigation */}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 bg-[#F5F9FC] border border-[#D2E5F0] rounded-xl p-1">
+            <button
+              onClick={handlePrevMonth}
+              className="p-1.5 rounded-lg text-[#5E6C8E] hover:text-[#0A4D68] hover:bg-white transition-colors"
+              title="Previous Month"
             >
-              <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[#D2E5F0] mb-3">
-                  <span className="text-xs font-bold text-[#2B3451] tracking-wide">
-                    {day.name}
-                  </span>
-                  <span className="text-[11px] text-[#5E6C8E] font-mono">
-                    {day.label}
-                  </span>
-                </div>
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <span className="px-3 text-xs md:text-sm font-extrabold text-[#0A4D68] min-w-[140px] text-center">
+              {monthName}
+            </span>
+            <button
+              onClick={handleNextMonth}
+              className="p-1.5 rounded-lg text-[#5E6C8E] hover:text-[#0A4D68] hover:bg-white transition-colors"
+              title="Next Month"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
 
-                {/* Day posts */}
-                <div className="space-y-2">
-                  {dayPosts.map((post) => (
-                    <div
-                      key={post.id}
-                      className="p-2.5 rounded-xl bg-[#EBF4F9] border border-[#D2E5F0] text-xs space-y-1.5 group hover:border-[#0A4D68] transition-colors shadow-2xs"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1">
-                          <LinkedInIcon className="h-3 w-3 text-[#0A4D68]" />
-                          <InstagramIcon className="h-3 w-3 text-[#B9AED8]" />
-                          <XTwitterIcon className="h-3 w-3 text-[#2B3451]" />
-                        </div>
-                        <button
-                          onClick={() => handleUnschedule(post.id)}
-                          title={isRtl ? "إلغاء الجدولة" : "Unschedule post"}
-                          className="opacity-0 group-hover:opacity-100 text-[#5E6C8E] hover:text-rose-600 transition-opacity cursor-pointer"
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </button>
-                      </div>
+          <button
+            onClick={handleResetNovember}
+            className="px-3 py-1.5 rounded-xl bg-[#EBF4F9] hover:bg-[#D2E5F0] text-[#0A4D68] text-xs font-bold border border-[#D2E5F0] transition-colors"
+          >
+            {isRtl ? "نوفمبر 2026 (الأساسي)" : "Nov 2026"}
+          </button>
+        </div>
 
-                      <div className="text-[#2B3451] font-bold text-[11px] line-clamp-2">
-                        {post.title}
-                      </div>
+        {/* Channel Filters */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-xs font-bold text-[#5E6C8E] flex items-center gap-1 ml-1">
+            <Filter className="h-3 w-3" />
+            {isRtl ? "فلترة:" : "Filter:"}
+          </span>
 
-                      <div className="text-[10px] text-[#0A4D68] flex items-center gap-1 font-mono font-semibold">
-                        <Clock className="h-2.5 w-2.5" />
-                        <span>
-                          {new Date(post.scheduledFor!).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-
-                  {dayPosts.length === 0 && (
-                    <div className="text-[11px] text-[#5E6C8E] text-center py-10 font-medium">
-                      {isRtl ? "متاح للنشر" : "Open Slot"}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <button
-                onClick={() => {
-                  setSelectedDate(`${day.dateStr}T10:00`)
-                  if (unscheduledPosts.length > 0) {
-                    setSchedulingId(unscheduledPosts[0].id)
-                  }
-                }}
-                disabled={unscheduledPosts.length === 0}
-                className="w-full mt-2 py-1.5 rounded-lg bg-[#F5F9FC] hover:bg-[#EBF4F9] text-[11px] font-bold text-[#0A4D68] border border-[#D2E5F0] transition-colors disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center gap-1 cursor-pointer"
-              >
-                <Plus className="h-3 w-3" />
-                <span>{isRtl ? "جدولة منشور" : "Slot Post"}</span>
-              </button>
-            </div>
-          )
-        })}
+          {[
+            { key: "ALL", label: isRtl ? "الكل" : "All" },
+            { key: "LINKEDIN", label: "LinkedIn" },
+            { key: "X", label: "X (Twitter)" },
+            { key: "INSTAGRAM", label: "Instagram" },
+            { key: "ARTICLE", label: isRtl ? "مقالات البورتفوليو" : "Articles" },
+          ].map((ch) => (
+            <button
+              key={ch.key}
+              onClick={() => setSelectedChannel(ch.key)}
+              className={cn(
+                "px-2.5 py-1 rounded-lg text-xs font-bold transition-all",
+                selectedChannel === ch.key
+                  ? "bg-[#0A4D68] text-white shadow-sm"
+                  : "bg-[#F5F9FC] text-[#5E6C8E] hover:bg-[#EBF4F9] hover:text-[#2B3451]"
+              )}
+            >
+              {ch.label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Scheduling Dialog Modal */}
-      {schedulingId && (
-        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white border border-[#D2E5F0] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95">
-            <h3 className="text-base font-bold text-[#2B3451]">
-              {isRtl ? "جدولة المنشور للنشر التلقائي" : "Schedule Post for Publication"}
-            </h3>
+      {/* Month Calendar Grid */}
+      <div className="bg-white rounded-2xl border border-[#D2E5F0] shadow-sm overflow-hidden">
+        {/* Days of Week Header */}
+        <div className="grid grid-cols-7 border-b border-[#D2E5F0] bg-[#F5F9FC] text-center">
+          {weekDayNames.map((name, i) => (
+            <div key={i} className="py-2.5 text-xs font-extrabold text-[#5E6C8E]">
+              {name}
+            </div>
+          ))}
+        </div>
 
-            <form onSubmit={handleScheduleSubmit} className="space-y-4 text-xs">
-              <div>
-                <label className="block text-[#5E6C8E] font-bold mb-1">
-                  {isRtl ? "اختر المنشور المعتمد" : "Select Approved Draft"}
-                </label>
-                <select
-                  value={schedulingId}
-                  onChange={(e) => setSchedulingId(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-[#F5F9FC] border border-[#D2E5F0] text-[#2B3451] font-medium"
-                >
-                  {unscheduledPosts.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
+        {/* Days Cells */}
+        <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-[#D2E5F0]/60">
+          {monthData.map((cell, idx) => {
+            if (!cell.isCurrentMonth || !cell.dayNumber) {
+              return <div key={idx} className="min-h-[110px] bg-[#FAFBFD]/50 p-2" />
+            }
 
-              <div>
-                <label className="block text-[#5E6C8E] font-bold mb-1">
-                  {isRtl ? "تاريخ ووقت النشر" : "Publication Date & Time"}
-                </label>
-                <input
-                  type="datetime-local"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-[#F5F9FC] border border-[#D2E5F0] text-[#2B3451] font-medium"
-                  required
-                />
-              </div>
+            // Find items scheduled on this exact day in Asia/Hebron
+            const dayItems = filteredItems.filter((item) => {
+              const { y, m, d } = getHebronDateParts(item.scheduledFor)
+              return y === currentYear && m === currentMonth && d === cell.dayNumber
+            })
 
-              <div className="flex justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setSchedulingId(null)}
-                  className="px-4 py-2 rounded-lg text-[#5E6C8E] hover:text-[#2B3451] font-bold cursor-pointer"
-                >
-                  {isRtl ? "إلغاء" : "Cancel"}
-                </button>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-4 py-2 rounded-lg bg-[#0A4D68] hover:bg-[#07384C] text-white font-bold transition-all shadow-sm shadow-[#0A4D68]/20 cursor-pointer"
-                >
-                  {submitting
-                    ? isRtl ? "جارٍ الجدولة..." : "Scheduling..."
-                    : isRtl ? "تأكيد الجدولة" : "Confirm Schedule"}
-                </button>
+            const isNovActive = currentYear === 2026 && currentMonth === 10
+            const hasItems = dayItems.length > 0
+
+            return (
+              <div
+                key={idx}
+                className={cn(
+                  "min-h-[110px] md:min-h-[130px] p-2 flex flex-col justify-between transition-colors",
+                  hasItems ? "bg-white hover:bg-[#F5F9FC]/60" : "bg-white"
+                )}
+              >
+                {/* Day Header */}
+                <div className="flex items-center justify-between">
+                  <span
+                    className={cn(
+                      "text-xs font-bold px-1.5 py-0.5 rounded-md",
+                      hasItems ? "bg-[#D2E5F0] text-[#0A4D68]" : "text-[#5E6C8E]"
+                    )}
+                  >
+                    {cell.dayNumber}
+                  </span>
+                  {hasItems && (
+                    <span className="text-[10px] font-bold text-[#0A4D68]">
+                      {dayItems.length}
+                    </span>
+                  )}
+                </div>
+
+                {/* Items Badges */}
+                <div className="space-y-1 mt-1 flex-1 overflow-y-auto max-h-[90px]">
+                  {dayItems.map((item) => {
+                    const { timeStr } = getHebronDateParts(item.scheduledFor)
+                    const isArticle = item.type === "ARTICLE"
+
+                    return (
+                      <div
+                        key={item.id}
+                        onClick={() => setActiveItem(item)}
+                        className={cn(
+                          "px-2 py-1 rounded-md text-[10px] font-bold cursor-pointer transition-all flex items-center justify-between gap-1 shadow-2xs border",
+                          isArticle
+                            ? "bg-[#B9AED8]/20 text-[#052634] border-[#B9AED8]/40 hover:bg-[#B9AED8]/30"
+                            : item.platform === "LINKEDIN"
+                            ? "bg-[#0A4D68] text-white border-transparent hover:bg-[#0A4D68]/90"
+                            : item.platform === "X"
+                            ? "bg-[#2B3451] text-white border-transparent hover:bg-[#2B3451]/90"
+                            : "bg-[#D2E5F0] text-[#0A4D68] border-[#A7C8B4] hover:bg-[#D2E5F0]/80"
+                        )}
+                        title={item.title}
+                      >
+                        <div className="flex items-center gap-1 min-w-0">
+                          {isArticle ? (
+                            <BookOpen className="h-3 w-3 shrink-0" />
+                          ) : item.platform === "LINKEDIN" ? (
+                            <span className="shrink-0">LI</span>
+                          ) : item.platform === "X" ? (
+                            <span className="shrink-0">X</span>
+                          ) : (
+                            <span className="shrink-0">IG</span>
+                          )}
+                          <span className="truncate">{item.title}</span>
+                        </div>
+                        <span className="text-[9px] opacity-80 shrink-0">{timeStr}</span>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-            </form>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Item Detail Modal / Preview Card */}
+      {activeItem && (
+        <div className="bg-white p-5 rounded-2xl border border-[#0A4D68]/30 shadow-lg space-y-3 animate-in fade-in">
+          <div className="flex items-center justify-between border-b border-[#D2E5F0] pb-3">
+            <div className="flex items-center gap-2">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#0A4D68] text-white">
+                {activeItem.type === "ARTICLE" ? (isRtl ? "مقال بورتفوليو" : "Portfolio Guide") : activeItem.platform}
+              </span>
+              <span className="text-xs font-bold text-[#0A4D68] bg-[#D2E5F0] px-2 py-0.5 rounded">
+                {new Intl.DateTimeFormat(isRtl ? "ar-EG" : "en-US", {
+                  timeZone: "Asia/Hebron",
+                  weekday: "short",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }).format(activeItem.scheduledFor)}
+              </span>
+            </div>
+            <button
+              onClick={() => setActiveItem(null)}
+              className="text-xs text-[#5E6C8E] hover:text-[#2B3451] p-1 font-bold"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="space-y-1">
+            <h4 className="font-bold text-sm text-[#2B3451]">{activeItem.title}</h4>
+            {activeItem.content && (
+              <p className="text-xs text-[#5E6C8E] line-clamp-3 font-mono bg-[#F5F9FC] p-2.5 rounded-lg border border-[#D2E5F0]">
+                {activeItem.content}
+              </p>
+            )}
+            {activeItem.canonicalUrl && (
+              <a
+                href={activeItem.canonicalUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs text-[#0A4D68] font-semibold hover:underline flex items-center gap-1 pt-1"
+              >
+                <ExternalLink className="h-3 w-3" />
+                <span>{activeItem.canonicalUrl}</span>
+              </a>
+            )}
+          </div>
+
+          <div className="pt-2 flex justify-end">
+            <Link
+              href="/dashboard/editorial"
+              className="px-4 py-1.5 rounded-lg bg-[#0A4D68] text-white text-xs font-bold hover:bg-[#0A4D68]/90 transition-all"
+            >
+              {isRtl ? "فتح وتعديل في استوديو التحرير" : "Open in Editorial Studio"}
+            </Link>
           </div>
         </div>
       )}
 
-      {/* Unscheduled Pool */}
-      <div className="bg-white border border-[#D2E5F0] rounded-2xl p-6 space-y-4 shadow-2xs">
-        <div className="flex items-center justify-between">
-          <div className="space-y-0.5">
-            <h3 className="text-sm font-bold text-[#2B3451]">
-              {isRtl
-                ? `مسودات معتمدة بانتظار الجدولة (${unscheduledPosts.length})`
-                : `Approved Drafts Ready to Schedule (${unscheduledPosts.length})`}
-            </h3>
-            <p className="text-xs text-[#5E6C8E]">
-              {isRtl
-                ? "حدد موعد نشر هذه المنشورات المعتمدة عبر التقويم."
-                : "Assign these verified posts into your calendar queue."}
-            </p>
-          </div>
-        </div>
-
-        {unscheduledPosts.length === 0 ? (
-          <div className="text-xs text-[#5E6C8E] text-center py-4">
+      {/* Editorial Policy Disclaimer */}
+      <div className="bg-[#F5F9FC] p-4 rounded-xl border border-[#D2E5F0] flex items-start gap-3 text-xs text-[#5E6C8E] leading-relaxed">
+        <Info className="h-4 w-4 text-[#0A4D68] shrink-0 mt-0.5" />
+        <div>
+          <span className="font-bold text-[#0A4D68]">
+            {isRtl ? "ملاحظة تحريرية صادقة:" : "Editorial Notice:"}{" "}
+          </span>
+          <span>
             {isRtl
-              ? "جميع المنشورات مجدولة حالياً على التقويم بنجاح."
-              : "All posts are currently placed in your publication schedule."}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {unscheduledPosts.map((post) => (
-              <div
-                key={post.id}
-                className="p-3.5 rounded-xl bg-[#F5F9FC] border border-[#D2E5F0] text-xs flex items-center justify-between gap-3 shadow-2xs"
-              >
-                <div className="space-y-1 min-w-0">
-                  <div className="font-bold text-[#2B3451] truncate">
-                    {post.title}
-                  </div>
-                  <div className="text-[10px] text-[#0A4D68] font-mono font-semibold">
-                    {post.idea?.contentPillar || "Full-Stack"}
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => {
-                    setSchedulingId(post.id)
-                    setSelectedDate("2026-10-26T10:00")
-                  }}
-                  className="px-2.5 py-1 rounded bg-[#0A4D68] hover:bg-[#07384C] text-white text-[11px] font-bold shrink-0 transition-colors cursor-pointer shadow-2xs"
-                >
-                  {isRtl ? "جدولة" : "Schedule"}
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
+              ? "المواعيد المسجلة في هذا التقويم هي جداول تحريرية معتمدة وفق توقيت القدس (Asia/Hebron UTC+2). لا يتضمن النظام نشراً تلقائياً عبر واجهات برمجية مغلقة، بل يتم نسخ المحتوى والاعتماد بالتوثيق اليدوي الصادق من قبل صاحب الحساب."
+              : "All scheduled times represent approved editorial plans in Asia/Hebron (UTC+2). Automatic API publishing is not active; content is published directly by the owner with truthful attribution."}
+          </span>
+        </div>
       </div>
     </div>
   )

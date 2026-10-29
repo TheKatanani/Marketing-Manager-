@@ -1,0 +1,41 @@
+{
+  "images": 96,
+  "stories": [
+    {
+      "date": "2026-11-01T06:00:00.000Z",
+      "caption": "قائمة عملية تحدد هدف الموقع، مستخدمه، محتواه، تكاملاته، وحدود التسليم قبل تحويل الفكرة إلى سعر وخطة تنفيذ.",
+      "linkSticker": "https://thekatanani.com/ar/blog/website-brief-before-choosing-tools",
+      "assets": [
+        "stories/week-1-1.png",
+        "stories/week-1-2.png"
+      ]
+    },
+    {
+      "date": "2026-11-08T06:00:00.000Z",
+      "caption": "راجع اتجاه النص، الحقول المختلطة، التنقل، المحتوى الطويل، ولوحة المفاتيح ضمن مسار مستخدم فعلي.",
+      "linkSticker": "https://thekatanani.com/ar/blog/arabic-interface-review-checklist",
+      "assets": [
+        "stories/week-2-1.png",
+        "stories/week-2-2.png"
+      ]
+    },
+    {
+      "date": "2026-11-15T06:00:00.000Z",
+      "caption": "حدد المطلوب والسياق وحدود التغيير، ثم راجع الفرق واختبر السلوك قبل اعتماد الكود أو المحتوى الناتج.",
+      "linkSticker": "https://thekatanani.com/ar/blog/ai-code-change-review-workflow",
+      "assets": [
+        "stories/week-3-1.png",
+        "stories/week-3-2.png"
+      ]
+    },
+    {
+      "date": "2026-11-22T06:00:00.000Z",
+      "caption": "قائمة تساعد العميل والمطور على مراجعة الرحلات الأساسية، إدارة المحتوى، التشغيل، وحدود الدعم المتفق عليها.",
+      "linkSticker": "https://thekatanani.com/ar/blog/website-handoff-and-maintenance-checklist",
+      "assets": [
+        "stories/week-4-1.png",
+        "stories/week-4-2.png"
+      ]
+    }
+  ]
+}

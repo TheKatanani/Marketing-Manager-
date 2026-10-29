@@ -1,5 +1,7 @@
 "use server"
 
+import { getActiveUser } from "@/lib/active-user"
+
 import { prisma } from "@/lib/prisma"
 import { AIService } from "@/lib/ai/provider"
 import { revalidatePath } from "next/cache"
@@ -19,23 +21,7 @@ function safeParseArray(val: unknown): string[] {
   return []
 }
 
-async function getActiveUser() {
-  let user = await prisma.user.findFirst({
-    where: { email: "mohammed@thekatanani.com" },
-  })
 
-  if (!user) {
-    user = await prisma.user.findFirst({
-      where: { email: "demo@brandpilot.ai" },
-    })
-  }
-
-  if (!user) {
-    user = await prisma.user.findFirst()
-  }
-
-  return user
-}
 
 export async function getIdeas() {
   try {
@@ -366,29 +352,34 @@ export async function generateAndSaveDrafts(ideaId: string) {
       return { success: false, error: "Content idea not found." }
     }
 
-    // If no project is directly attached to the idea, use the first featured project
-    let rawProject = idea.project
-    if (!rawProject) {
-      rawProject = await prisma.project.findFirst({
-        where: { userId: user.id, isFeatured: true },
-      })
-    }
-
-    if (!rawProject) {
-      rawProject = await prisma.project.findFirst({
-        where: { userId: user.id },
-      })
-    }
-
-    if (!rawProject) {
-      return { success: false, error: "No project case study available as factual source." }
-    }
-
-    const project = {
-      ...rawProject,
-      techStack: safeParseArray(rawProject.techStack),
-      keyMetrics: safeParseArray(rawProject.keyMetrics),
-    }
+    // If an idea has no linked project, treat it as a standalone tip or practice rather than forcing an unrelated case study
+    const rawProject = idea.project
+    const project = rawProject
+      ? {
+          ...rawProject,
+          techStack: safeParseArray(rawProject.techStack),
+          keyMetrics: safeParseArray(rawProject.keyMetrics),
+        }
+      : {
+          id: "",
+          userId: user.id,
+          slug: "standalone-insight",
+          projectContext: "Industry Best Practice & Practical Tip",
+          isFeatured: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          completedAt: null,
+          projectUrl: null,
+          repositoryUrl: null,
+          title: "Standalone Topic / Industry Best Practice",
+          problemStatement: idea.hook,
+          solutionArchitecture: idea.sourceNotes || "Direct practical advice and engineering insight.",
+          techStack: [],
+          businessImpact: "Client clarity, technical guidance, and reliable execution.",
+          keyMetrics: [],
+          constraintsFaced: "",
+          lessonsLearned: idea.title,
+        }
 
     const brand = await getBrandProfile()
     const brandData = {

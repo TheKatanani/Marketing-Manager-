@@ -36,6 +36,11 @@ export function DashboardSidebar() {
       icon: LayoutDashboard,
     },
     {
+      name: isRtl ? "حملة نوفمبر التحريرية" : "November Editorial Plan",
+      href: "/dashboard/editorial",
+      icon: Compass,
+    },
+    {
       name: isRtl ? "مدونة معرض الأعمال" : "Portfolio Blog",
       href: "/dashboard/blog",
       icon: BookOpen,

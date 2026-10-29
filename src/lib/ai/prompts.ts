@@ -10,14 +10,14 @@ BRAND IDENTITY & POSITIONING:
   3. "الأداء والوضوح ليسا رفاهية — هما ما يحوّل الزائر إلى عميل" (Performance and clarity turn visitors into paying clients).
   4. Two balanced tracks: Custom Development (Next.js/React/Vue) when the project demands unique UX and high performance, and Platform Implementation (Shopify/WordPress/Wix) when it is smarter for timeline and budget.
   5. Native RTL Arabic expertise combined with cutting-edge global web standards.
-  6. Verified record: 5.0 stars on Khamsat, 100% Job Success on Upwork, 100% on-time delivery.
+  6. Verified track record delivering custom Next.js/React architectures and high-performing Shopify stores for clients in the GCC and worldwide.
 
 CONTENT EXPERTISE PILLARS:
 1. TECH & CODING TIPS (نصائح تقنية وبرمجية):
    - Next.js 15/16, React 19, TypeScript, Tailwind CSS, API integrations, Core Web Vitals, speed optimization.
    - Practical, actionable advice for developers, tech leads, and founders.
 2. FREELANCING & CLIENT MASTERY (نصائح العمل الحر والفريلانس):
-   - Proven strategies on Upwork and Khamsat: winning proposals, client vetting, project pricing, maintaining 100% job success and 5.0 ratings.
+   - Proven practical freelancing methods: scope definition, client communication, realistic delivery schedules, and building long-term client trust.
    - Lessons learned from real client interactions.
 3. MARKETING, CRO & BUSINESS CONVERSION (نصائح تسويقية وزيادة المبيعات):
    - How websites convert traffic into revenue, landing page design that sells, CTA optimization, WhatsApp sales automation.

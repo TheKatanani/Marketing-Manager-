@@ -1,71 +1,134 @@
 "use server"
 
+import { getActiveUser } from "@/lib/active-user"
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 
-async function getActiveUser() {
-  let user = await prisma.user.findFirst({
-    where: { email: "mohammed@thekatanani.com" },
-  })
-
-  if (!user) {
-    user = await prisma.user.findFirst({
-      where: { email: "demo@brandpilot.ai" },
-    })
-  }
-
-  if (!user) {
-    user = await prisma.user.findFirst()
-  }
-
-  return user
-}
-
-export async function getCalendarPosts() {
+export async function getCalendarData() {
   try {
     const user = await getActiveUser()
-    if (!user) return []
+    if (!user) return { posts: [], articles: [] }
 
-    const posts = await prisma.post.findMany({
-      where: {
-        userId: user.id,
-      },
-      include: {
-        versions: true,
-        idea: {
-          select: {
-            title: true,
-            contentPillar: true,
+    const [posts, articles] = await Promise.all([
+      prisma.post.findMany({
+        where: {
+          userId: user.id,
+        },
+        include: {
+          versions: true,
+          article: {
+            select: {
+              id: true,
+              title: true,
+              slug: true,
+              canonicalUrl: true,
+            },
+          },
+          idea: {
+            select: {
+              title: true,
+              contentPillar: true,
+            },
           },
         },
-      },
-      orderBy: { createdAt: "desc" },
+        orderBy: { scheduledFor: "asc" },
+      }),
+      prisma.blogPost.findMany({
+        where: {
+          userId: user.id,
+        },
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          canonicalUrl: true,
+          language: true,
+          category: true,
+          scheduledFor: true,
+          status: true,
+        },
+        orderBy: { scheduledFor: "asc" },
+      }),
+    ])
+
+    return { posts, articles }
+  } catch (error) {
+    console.error("Failed to fetch calendar data:", error)
+    return { posts: [], articles: [] }
+  }
+}
+
+// Backward compatibility helper
+export async function getCalendarPosts() {
+  const { posts } = await getCalendarData()
+  return posts
+}
+
+export async function schedulePostVersion(versionId: string, scheduledDate: string) {
+  try {
+    const user = await getActiveUser()
+    if (!user) return { success: false, error: "Active user not found." }
+
+    const version = await prisma.postVersion.findFirst({
+      where: { id: versionId, post: { userId: user.id } },
     })
 
-    return posts
-  } catch (error) {
-    console.error("Failed to fetch calendar posts:", error)
-    return []
+    if (!version) return { success: false, error: "Version not found." }
+
+    const newDate = new Date(scheduledDate)
+    const updated = await prisma.postVersion.update({
+      where: { id: version.id },
+      data: {
+        scheduledFor: newDate,
+        status: "SCHEDULED",
+      },
+    })
+
+    // Update parent post's scheduledFor if not set or earlier
+    await prisma.post.update({
+      where: { id: version.postId },
+      data: {
+        scheduledFor: newDate,
+        status: "SCHEDULED",
+      },
+    })
+
+    revalidatePath("/dashboard/calendar")
+    revalidatePath("/dashboard/editorial")
+    revalidatePath("/dashboard")
+
+    return { success: true, version: updated }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Failed to schedule"
+    return { success: false, error: message }
   }
 }
 
 export async function schedulePost(postId: string, scheduledDate: string) {
   try {
     const user = await getActiveUser()
-    if (!user) {
-      return { success: false, error: "Active user not found." }
-    }
+    if (!user) return { success: false, error: "Active user not found." }
 
+    const newDate = new Date(scheduledDate)
     const updated = await prisma.post.update({
       where: { id: postId, userId: user.id },
       data: {
-        scheduledFor: new Date(scheduledDate),
+        scheduledFor: newDate,
+        status: "SCHEDULED",
+      },
+    })
+
+    // Also update all versions of this post that have no scheduled date
+    await prisma.postVersion.updateMany({
+      where: { postId, post: { userId: user.id } },
+      data: {
+        scheduledFor: newDate,
         status: "SCHEDULED",
       },
     })
 
     revalidatePath("/dashboard/calendar")
-    revalidatePath("/dashboard/content")
+    revalidatePath("/dashboard/editorial")
     revalidatePath("/dashboard")
 
     return { success: true, post: updated }
@@ -78,20 +141,26 @@ export async function schedulePost(postId: string, scheduledDate: string) {
 export async function unschedulePost(postId: string) {
   try {
     const user = await getActiveUser()
-    if (!user) {
-      return { success: false, error: "Active user not found." }
-    }
+    if (!user) return { success: false, error: "Active user not found." }
 
     const updated = await prisma.post.update({
       where: { id: postId, userId: user.id },
       data: {
         scheduledFor: null,
-        status: "APPROVED",
+        status: "DRAFT",
+      },
+    })
+
+    await prisma.postVersion.updateMany({
+      where: { postId, post: { userId: user.id } },
+      data: {
+        scheduledFor: null,
+        status: "DRAFT",
       },
     })
 
     revalidatePath("/dashboard/calendar")
-    revalidatePath("/dashboard/content")
+    revalidatePath("/dashboard/editorial")
     revalidatePath("/dashboard")
 
     return { success: true, post: updated }

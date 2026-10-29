@@ -1,0 +1,315 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// -------------------------------------------------------------
+// Authentication Models (NextAuth / Auth.js)
+// -------------------------------------------------------------
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts       Account[]
+  sessions       Session[]
+  brandProfile   BrandProfile?
+  projects       Project[]
+  campaigns      Campaign[]
+  ideas          ContentIdea[]
+  posts          Post[]
+  approvals      Approval[]
+  leads          Lead[]
+  socialAccounts SocialAccount[]
+  blogPosts      BlogPost[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// -------------------------------------------------------------
+// Brand & Strategy Center
+// -------------------------------------------------------------
+model BrandProfile {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  professionalTitle     String
+  bioSummary            String
+  primaryGoal           String   @default("CAREER_AND_FREELANCE")
+  coreSkills            String   // JSON string of array
+  targetRoles           String   // JSON string of array
+  freelanceServices     String   // JSON string of array
+  toneOfVoice           String
+  targetAudienceSummary String
+  contentPillars        String   // JSON string of array
+  languages             String   @default("[\"English\", \"Arabic\"]")
+  portfolioUrl          String?
+  githubUrl             String?
+  linkedinUrl           String?
+  twitterUrl            String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// -------------------------------------------------------------
+// Project & Achievement Knowledge Base
+// -------------------------------------------------------------
+model Project {
+  id                   String        @id @default(cuid())
+  userId               String
+  title                String
+  slug                 String
+  projectContext       String
+  problemStatement     String
+  solutionArchitecture String
+  techStack            String        // JSON string of array
+  businessImpact       String
+  keyMetrics           String        // JSON string of array
+  constraintsFaced     String
+  lessonsLearned       String
+  projectUrl           String?
+  repositoryUrl        String?
+  completedAt          DateTime?
+  isFeatured           Boolean       @default(false)
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  user  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ideas ContentIdea[]
+
+  @@unique([userId, slug])
+}
+
+// -------------------------------------------------------------
+// Content Architecture & Marketing Campaigns
+// -------------------------------------------------------------
+model Campaign {
+  id          String        @id @default(cuid())
+  userId      String
+  name        String
+  objective   String
+  startDate   DateTime?
+  endDate     DateTime?
+  status      String        @default("PLANNING")
+  planKey     String?
+  strategy    String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  user  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ideas ContentIdea[]
+  posts Post[]
+  blogPosts BlogPost[]
+
+  @@unique([userId, planKey])
+}
+
+model ContentIdea {
+  id             String    @id @default(cuid())
+  userId         String
+  projectId      String?
+  campaignId     String?
+  title          String
+  hook           String
+  targetAudience String
+  contentPillar  String
+  targetPlatform String    @default("ALL")
+  status         String    @default("IDEA")
+  sourceNotes    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project  Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  campaign Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  posts    Post[]
+}
+
+model Post {
+  id           String        @id @default(cuid())
+  userId       String
+  ideaId       String?
+  campaignId   String?
+  title        String
+  status       String        @default("DRAFT") // DRAFT, IN_REVIEW, APPROVED, SCHEDULED, PUBLISHED, FAILED
+  scheduledFor DateTime?
+  publishedAt  DateTime?
+  sourceType   String        @default("STANDALONE")
+  sourceUrl    String?
+  sourceLabel  String?
+  articleId    String?
+  weekTheme    String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  idea      ContentIdea?  @relation(fields: [ideaId], references: [id], onDelete: SetNull)
+  campaign  Campaign?     @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  article   BlogPost?     @relation(fields: [articleId], references: [id], onDelete: SetNull)
+  versions  PostVersion[]
+  approvals Approval[]
+  metrics   PostMetric[]
+}
+
+model PostVersion {
+  id             String   @id @default(cuid())
+  postId         String
+  platform       String   // LINKEDIN, INSTAGRAM, X
+  content        String
+  hashtags       String   // JSON string of array
+  visualPrompt   String?
+  carouselSlides String?  // JSON string
+  status         String   @default("DRAFT")
+  language       String   @default("ar")
+  scheduledFor   DateTime?
+  publishedAt    DateTime?
+  publishedUrl   String?
+  assetPaths     String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, platform])
+}
+
+model Approval {
+  id        String   @id @default(cuid())
+  postId    String
+  userId    String
+  decision  String   // APPROVED, REJECTED, REVISION_REQUESTED
+  feedback  String?
+  createdAt DateTime @default(now())
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// -------------------------------------------------------------
+// Performance & Outcome Attribution (Section 7, 10, 14)
+// -------------------------------------------------------------
+model PostMetric {
+  id                 String   @id @default(cuid())
+  postId             String
+  platform           String   // LINKEDIN, INSTAGRAM, X
+  impressions        Int      @default(0)
+  engagements        Int      @default(0)
+  likes              Int      @default(0)
+  comments           Int      @default(0)
+  shares             Int      @default(0)
+  clicks             Int      @default(0)
+  recruiterInquiries Int      @default(0)
+  updatedAt          DateTime @updatedAt
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model Lead {
+  id             String   @id @default(cuid())
+  userId         String
+  sourcePlatform String   // LINKEDIN, X, INSTAGRAM, DIRECT
+  contactName    String
+  company        String
+  role           String   // e.g. "Head of Talent", "CTO", "E-Commerce Founder"
+  type           String   // RECRUITER_JOB, FREELANCE_CLIENT, ADVISORY
+  status         String   @default("INQUIRY") // INQUIRY, CALL_SCHEDULED, INTERVIEW, OFFER, CLOSED
+  estimatedValue String?  // e.g. "$145,000/yr Remote", "$9,000 Contract"
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SocialAccount {
+  id          String    @id @default(cuid())
+  userId      String
+  platform    String    // LINKEDIN, INSTAGRAM, X
+  accountName String
+  profileUrl  String?
+  isConnected Boolean   @default(false)
+  lastSyncAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, platform])
+}
+
+// -------------------------------------------------------------
+// Portfolio Blog & Articles Management
+// -------------------------------------------------------------
+model BlogPost {
+  id              String    @id @default(cuid())
+  userId          String
+  title           String
+  slug            String
+  category        String    // TECH, FREELANCE, MARKETING, ECOMMERCE, CASE_STUDY
+  excerpt         String
+  content         String    // Rich Markdown or HTML article
+  coverImage      String?
+  imagePrompt     String?   // AI Image Generation prompt for cover
+  readTimeMinutes Int       @default(4)
+  tags            String    @default("[]") // JSON string of array
+  seoTitle        String?
+  seoDescription  String?
+  status          String    @default("DRAFT") // DRAFT, PUBLISHED
+  publishedAt     DateTime?
+  scheduledFor    DateTime?
+  canonicalUrl    String?
+  language        String    @default("ar")
+  campaignId      String?
+  sources         String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  campaign Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  socialPosts Post[]
+
+  @@unique([userId, slug])
+}

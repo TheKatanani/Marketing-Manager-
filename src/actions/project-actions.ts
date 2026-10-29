@@ -1,5 +1,7 @@
 "use server"
 
+import { getActiveUser } from "@/lib/active-user"
+
 import { prisma } from "@/lib/prisma"
 import { projectSchema, type ProjectInput } from "@/lib/validations/project"
 import { revalidatePath } from "next/cache"
@@ -17,23 +19,7 @@ function safeParseArray(val: unknown): string[] {
   return []
 }
 
-async function getActiveUser() {
-  let user = await prisma.user.findFirst({
-    where: { email: "mohammed@thekatanani.com" },
-  })
 
-  if (!user) {
-    user = await prisma.user.findFirst({
-      where: { email: "demo@brandpilot.ai" },
-    })
-  }
-
-  if (!user) {
-    user = await prisma.user.findFirst()
-  }
-
-  return user
-}
 
 function generateSlug(title: string): string {
   return title

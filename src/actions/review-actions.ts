@@ -1,25 +1,11 @@
 "use server"
 
+import { getActiveUser } from "@/lib/active-user"
+
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 
-async function getActiveUser() {
-  let user = await prisma.user.findFirst({
-    where: { email: "mohammed@thekatanani.com" },
-  })
 
-  if (!user) {
-    user = await prisma.user.findFirst({
-      where: { email: "demo@brandpilot.ai" },
-    })
-  }
-
-  if (!user) {
-    user = await prisma.user.findFirst()
-  }
-
-  return user
-}
 
 export async function getReviewQueue() {
   try {
