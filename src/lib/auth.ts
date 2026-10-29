@@ -3,6 +3,21 @@ import Credentials from "next-auth/providers/credentials"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
+if (process.env.NODE_ENV === "production" || process.env.VERCEL) {
+  const host =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+    process.env.VERCEL_URL ||
+    "marketing-manager-omega.vercel.app"
+  const proto = host.startsWith("http") ? "" : "https://"
+  const prodUrl = `${proto}${host}`
+  if (!process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL.includes("localhost")) {
+    process.env.NEXTAUTH_URL = prodUrl
+  }
+  if (!process.env.AUTH_URL || process.env.AUTH_URL.includes("localhost")) {
+    process.env.AUTH_URL = prodUrl
+  }
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
   secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "the-katanani-brandpilot-secret-prod-2026-key",
