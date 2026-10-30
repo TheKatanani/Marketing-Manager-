@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Petroleum",
+    "hex": "#0A4D68",
+    "rgb": [
+      10,
+      77,
+      104
+    ],
+    "role": "Primary ink and dark surfaces"
+  },
+  {
+    "name": "Sky",
+    "hex": "#D2E5F0",
+    "rgb": [
+      210,
+      229,
+      240
+    ],
+    "role": "Accents, reversed marks and quiet fields"
+  },
+  {
+    "name": "Navy",
+    "hex": "#2B3451",
+    "rgb": [
+      43,
+      52,
+      81
+    ],
+    "role": "Small text and secondary detail"
+  },
+  {
+    "name": "White",
+    "hex": "#FFFFFF",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "role": "Main canvas and breathing room"
+  }
+]

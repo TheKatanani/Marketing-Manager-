@@ -1,677 +1,695 @@
 {
   "images": 96,
+  "brand": {
+    "name": "THE KATANANI",
+    "revision": "katanani-approved-identity-v3",
+    "palette": {
+      "petroleum": "#0A4D68",
+      "sky": "#D2E5F0",
+      "navy": "#2B3451",
+      "white": "#FFFFFF",
+      "lilac": "#B9AED8",
+      "sage": "#A7C8B4"
+    },
+    "logo": "/brand/katanani/primary-transparent.png",
+    "logoDimensions": {
+      "width": 2172,
+      "height": 724
+    },
+    "logoSha256": "6e9d25b629635510fa38705dee1f0983ca519bb2855a53c6090086b14b8e9606"
+  },
   "assets": [
     {
       "path": "/editorial/2026-11/01-brief/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "d74b597a2a2b338a7c1044bb7a7e40709d236fb57691b349dd35abaca6924d8f"
+      "sha256": "c792c229ab9040413e33b88a35d1af8a4fb4fa34030a8c0375a3775b3a3b0b3d"
     },
     {
       "path": "/editorial/2026-11/01-brief/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "afbe3789185edd132efc63f071e894d5f292953bceff0a0d7fa40d428d853e9e"
+      "sha256": "d32c06058d126c1c6f2a795b0c7f22cd45b9b2577e02376e0717d2e812a25220"
     },
     {
       "path": "/editorial/2026-11/01-brief/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "bd51e03ebf7e36a5f0c4b1e901122ca00a07bd23de3e4fe1eefe21e7f0d42b8d"
+      "sha256": "3584ba7aefbd80b521821fb5572e3da522930a3b5d07e43e6681d83df90bb8b7"
     },
     {
       "path": "/editorial/2026-11/01-brief/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "9c5db21697764fcbb08329c78e989e15ea95b3afa1e7c3504246c0ce0e94c46d"
+      "sha256": "6c872d2238b72b2c0150054df11d72dbdd0df2aafe270a9bcac98f57584453ac"
     },
     {
       "path": "/editorial/2026-11/01-brief/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "672072c690afa6b07f288671020ee0f9449db723f29d0571b17a17e75dcaec20"
+      "sha256": "1509bc26c4e6015fdbcf6a080d32a49531ecae15b4352974106d21aff3c4ac00"
     },
     {
       "path": "/editorial/2026-11/01-brief/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "a3dc840e9b835b8a2e1ea7386515a391fff0e08a2b3c961d0b2c84a9eb1650ce"
+      "sha256": "35d2fed33bf0f61750f7b74aa2c70a339ede150d395189a0030015c5d77e7847"
     },
     {
       "path": "/editorial/2026-11/02-proposal/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "5260d3f27146ef81213e8105b6c4bead33be744dc5ae231e4d379f2a2e0a1043"
+      "sha256": "86321272782586bf2721e8dae1f2a3f9cf37b2e4a6b3a58871aba02feca51333"
     },
     {
       "path": "/editorial/2026-11/02-proposal/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "70e61930194d8e363eb942794111b3054399986353bf4a6ef757b6fb659269c4"
+      "sha256": "aec16e79910733a3bfe6ffbc82fbdf3d63342fe6f58e364b2da2122092513325"
     },
     {
       "path": "/editorial/2026-11/02-proposal/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "2d328fce03ae756f18c8ab95da90dd08563cd8ed0181ec274956f7429b45eb7e"
+      "sha256": "2fadd1757536f9c442475725735fa8e3842dbe92e1a4ba425cdb7308bdc5bb4b"
     },
     {
       "path": "/editorial/2026-11/02-proposal/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "b4f01862ac2b064bd5a5ec086d1b7a7e754feb335d0b9d54af8838366d7723e6"
+      "sha256": "84f9aad121e4590746a82b3273ef4ef9054cc55e6dd1e061d4376a83a7606de9"
     },
     {
       "path": "/editorial/2026-11/02-proposal/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "19a1b0f594a648f15efd9c529c25f177fbf32c2294c94443b60bb13f46c16dc8"
+      "sha256": "e40c3dc60576ba92141dc7afb7e22cdd436853c353c460b43d68b92d822f985e"
     },
     {
       "path": "/editorial/2026-11/02-proposal/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "9714f1cf5b0c33cc92002a537aaecdc8269cfb915f99f3289518b3423c5f28bd"
+      "sha256": "96034a407f0e1287ceef2f1efe9ce86e9951bcf57fd048781832584532e349ba"
     },
     {
       "path": "/editorial/2026-11/03-coachspace/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "f336e1c6c53538e6a9f76bd1927ed0beb372e6ee4421144a11d6ab7c73d29453"
+      "sha256": "d4422cd2c776c7134a20492c72100ee1d3b076d8e6d5f3a3c95b082637eef8fd"
     },
     {
       "path": "/editorial/2026-11/03-coachspace/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "8b0ada3400cda6ab05892859aa3e32e170c08bf438402b2316da6548429b135a"
+      "sha256": "e0e8fd7614ea914f10135d1410e4a6f8cdadfd5a82e41989c64aa61f5425605f"
     },
     {
       "path": "/editorial/2026-11/03-coachspace/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "14a3af272ae9cea2e3844dbdfae031e9459157c56f560cf9d7d3e0cf77f8406f"
+      "sha256": "74e840bdef4e8ed5cb4eaa666c60fad11facb5f5ab2bc307e7d9261cc2b39a40"
     },
     {
       "path": "/editorial/2026-11/03-coachspace/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "80f03718d372737389ea7742ecafd5aa7167415710ac5f513b05d51b65b464c4"
+      "sha256": "ebe6d56bb8b20436020732cbd9d12c80709f636fff87bb0758df2ccbfc5cdb78"
     },
     {
       "path": "/editorial/2026-11/03-coachspace/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "bdaf2e169b2b23707914a4d5ca578ea2127f26eeb57637f47e8e990377d5efcb"
+      "sha256": "62778708c81eb2be48977d6290ff15a18ee441be772fe348febb39062e8a2d92"
     },
     {
       "path": "/editorial/2026-11/03-coachspace/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "b3a099be2b38326b80b3e19ac0aa5faa664b24b4d276206e204a158aa49d2df1"
+      "sha256": "e4e6035b247c37365604c2e28e97be89196fb28b21d565b6e65860fa1baef861"
     },
     {
       "path": "/editorial/2026-11/04-rtl/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "1d378473c0aa4ae02ac1b0ad3ca7b1a259f5e49e9720a059e7899969cfb0fe40"
+      "sha256": "f5a84bb0edec8d0e5b8c7cfa4309f99b5bf962871148f863baad0c167e2d9f2c"
     },
     {
       "path": "/editorial/2026-11/04-rtl/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "9147cfff4a8ed94a68815c4fc8c868158ab3a41e27ae1fb67de77867bc150db0"
+      "sha256": "8265900d476b9a4ab95a48122b4b6c728b24ce993edfb226f3cb24893db8e357"
     },
     {
       "path": "/editorial/2026-11/04-rtl/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "c6c9664de589ad1472d3b5282d011d621f8579e56d375dd8890a4509b1e47793"
+      "sha256": "2042b0bc2c4fb6eacc958e9e6a3e28b3101fcde4fdcecba5080bedc60caafe08"
     },
     {
       "path": "/editorial/2026-11/04-rtl/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "a1aae0b41b0c7013e2a70e7151b1884e22fc8bdc6aca127478905fa4e0f0e502"
+      "sha256": "8384565f1e213fa48bd35f089e2d5a782bcd407703a4e3416112824ed3fa6fd0"
     },
     {
       "path": "/editorial/2026-11/04-rtl/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "a3ddf72b2cd5eb55d25e9750f5b6a4a4ca485da4a2d8e73765f4b0de0262ffdb"
+      "sha256": "29564b37f1c7d1b59d0bfba900fe193139599361a48c47459a20434f258c3242"
     },
     {
       "path": "/editorial/2026-11/04-rtl/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "ec36a06b885ea992765de48b152b03ae535f46bd22a1ba39d088d027bff26041"
+      "sha256": "f290272931daf0679186a9c97b7b8cb10620596605b048382b853bb6f0ee5dd4"
     },
     {
       "path": "/editorial/2026-11/05-performance/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "f075be3a8a6d4e3b5269df6eecaa197ffe3bd90c42dacf8e7e940dc391ad0d4d"
+      "sha256": "3da7d3e24546221288eaf64cd31973162f19741605b384d6ebc8a43a63b2a1e0"
     },
     {
       "path": "/editorial/2026-11/05-performance/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "abb17b5c64840119e8206a396399a552954c218963694a1b6aa116b2fe963d06"
+      "sha256": "b9ea82b039ed6c34069352785c53810697872f5407ddcd9ecb0f0451c019e0cb"
     },
     {
       "path": "/editorial/2026-11/05-performance/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "96de9d034b8168e2a2a7e9e847aedf39f242a51b97437d687a17d55836afefd8"
+      "sha256": "c9152727280205a46298dc3e17fcf6087b8b12fa1c6526662f1fcbca6b19b3b4"
     },
     {
       "path": "/editorial/2026-11/05-performance/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "006c3e7b1c1ea01964bdcc6b790dc3be07e527969aee97ec7a46a4b0c73d4493"
+      "sha256": "40c330cf287152be8e866a6d79d920a12a28c5149c625e0e12de1d043bf5a942"
     },
     {
       "path": "/editorial/2026-11/05-performance/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "579b94568db07aedb19844ad32842db9bc9d228d67e032f2172bc377b18754ef"
+      "sha256": "c1edb9622ae7b4f5b38d3308d5bb4b47d27663fbe3bafee1256d779546273095"
     },
     {
       "path": "/editorial/2026-11/05-performance/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "ab2a0f6b32d7349e337ae92c6bb0ca5ed10b0b839bd0ceb171faae72ae560774"
+      "sha256": "db7d93eac5bf6b7f9177f3d05282ca7abf9cd92ccdafe3fdbb1ce01e4f1b9bdb"
     },
     {
       "path": "/editorial/2026-11/06-marwan/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "b07fb28022874324a9c055ee3f113aad93c07519a9d4e3a0cc51a8c61f6e35d9"
+      "sha256": "bdc4adf21d3a2970ade005030578fa870ed54adf6239f2eaaf0ab78f0aec63a4"
     },
     {
       "path": "/editorial/2026-11/06-marwan/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "21a4b3becbd5d0f35a78048df91118075cb33650bcc20067342343e4619512f6"
+      "sha256": "b99ea2f7b00589965afec1831e6402a45ae126e709bac1a6d675bc3c60251d25"
     },
     {
       "path": "/editorial/2026-11/06-marwan/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "60ea15dc08daee5803d92326ac66150df1bedafd244ceb64639a848b0e8a97bb"
+      "sha256": "40498feb885da30bf5f9a3056eec1d236ad299179f51f419c9f1bb9c3947b605"
     },
     {
       "path": "/editorial/2026-11/06-marwan/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "0e22b123c3b5a67ee0528414a4eb65d9cbab4f1501f75cfd5a189b927130dce4"
+      "sha256": "99cc3e6d8229ed89633e11b4bc787a0b48c34565464b9ec93792b45f9ceef21c"
     },
     {
       "path": "/editorial/2026-11/06-marwan/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "59d1874720cad3a7f444dc73bfc34d5ae7573213d1bc5d5be0935d4133d425b5"
+      "sha256": "d609bde38fe1bf425e003e9f9833a3996081c11ba9c73112da64fa57facefdb4"
     },
     {
       "path": "/editorial/2026-11/06-marwan/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "f57a1fe88a3062ca5cbd591d9bed1fe01fbc64c0d13e076709979e07f3febad9"
+      "sha256": "2e0657a986436cae9f694533deaf4b8cb2611adce222bcf982c87f6fb2ca6e63"
     },
     {
       "path": "/editorial/2026-11/07-ai-review/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "930208d089614b8cd136d176877eb5b52a135997ac7c55c063af90a54f5bcec8"
+      "sha256": "731ab7b1e9c4a8e85d56785311ba108f7b3c2b664c6a77d956c96636f2995348"
     },
     {
       "path": "/editorial/2026-11/07-ai-review/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "5ecbb36d77d519b77390d61eed4894874236386f5427d47299a4e632aa4b6b4f"
+      "sha256": "d8c1446c43eec77c4083b746ca2ea800394dfa59d9aa804166661c3a86cd16e8"
     },
     {
       "path": "/editorial/2026-11/07-ai-review/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "83147eaaa49c98dfb0048a39c979aa24563933fbc7253c68166d08817068a12e"
+      "sha256": "1dbf5ffa37592bee5889a20074718d607812f15624c0758b94849dec1d973648"
     },
     {
       "path": "/editorial/2026-11/07-ai-review/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "ae6ce3d3c501cf760366e212b0466c0b838f80117c49fca18d899a933fc73849"
+      "sha256": "092629bb5ea7f5b6cd76642630c6e7bf776cbf418d4459a024d8a9ed314fcb15"
     },
     {
       "path": "/editorial/2026-11/07-ai-review/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "35aca8677176a10cdbe2405c267a5e8228fb9c101eee607ee79fbe3cff70a290"
+      "sha256": "8227333746a69195dc3d80855eb858a17d07a47a423daa772dc7e1b3a2078235"
     },
     {
       "path": "/editorial/2026-11/07-ai-review/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "e82b692b63524cdff5ad0b28b175e9e67d84f1d8e36537b0252584dad6ef033f"
+      "sha256": "866ca115224f97880126d78dfba0dcc5c6eca56b99b0ea0a4181dfc828f804d7"
     },
     {
       "path": "/editorial/2026-11/08-bug-report/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "50bfdd8e821aaa38dd2bc61705a21262740e409971f521cefc9bfef034c6711a"
+      "sha256": "7d2a3f69f5e05c9089a3218f8015d55c2c88b811fc617f6a8a42ace34d55b507"
     },
     {
       "path": "/editorial/2026-11/08-bug-report/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "16097c3ec21b76f2656533e1aa5c42aa79059ffd8990ecc00036e1ba945bfa47"
+      "sha256": "62f42422b13157bb4154885f69db4e5ce32de340cf0dfcb8ca6613213970435c"
     },
     {
       "path": "/editorial/2026-11/08-bug-report/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "62685b44a80cd9ed46928488c636012af0b413b1c12b7ed7de5bfb4b78e0c138"
+      "sha256": "1caba52e4a3980534dd15ebb205a322cd6c189b25098c38d8f77c07c8274b79d"
     },
     {
       "path": "/editorial/2026-11/08-bug-report/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "eac0ced903d05525542638163d30dc3a6735ad6217a77234f78a3443c7a38cc8"
+      "sha256": "746be486adaf1f0fc4eaae6bbcd0d7a50619bf43f0627c6dc20de0c045152310"
     },
     {
       "path": "/editorial/2026-11/08-bug-report/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "4a8f15de06230d4e91f2611d77df297c122a7843313f4f97ad370fc5d8b02cb2"
+      "sha256": "c075cdbdf754be904ad6c3b7860120aaf8984fce7b63d13fd4130b3434391665"
     },
     {
       "path": "/editorial/2026-11/08-bug-report/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "1825518f4f098980cb858438c9488e2f798ef16d9b501da3ef361390e0fcc726"
+      "sha256": "67b277118a44556ac0d0eed00f6194dcce21510ee3610edbaa137bfa7277126d"
     },
     {
       "path": "/editorial/2026-11/09-content-workflow/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "5e5d8502ed8ef1739967deb2fbae05c85b2aebde0f867ca94d3efaf55a11ffd6"
+      "sha256": "aa19cb31199bc0c24f95286deddee3c83a2be66ae342d2c62a5bca5f42b1c754"
     },
     {
       "path": "/editorial/2026-11/09-content-workflow/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "fc557c20202bcc07a72fbe8159cb2fad6d064eee2557f8c4284880d617f4fbd5"
+      "sha256": "b04123b80c873f7305f039dd220cca2ec19e884ef5436f7965d8f1e92a9fe5e4"
     },
     {
       "path": "/editorial/2026-11/09-content-workflow/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "93726c2acc042aea1d4f4b47c9dc1133224ba404657b3691419c7f953b432abf"
+      "sha256": "683289b1c03b8d706e557811462f0fdd8315529a0419ff524b6ec48fbd99da0d"
     },
     {
       "path": "/editorial/2026-11/09-content-workflow/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "ec963f35c901a1a42add8090b8afb6b528ab0fac0e2f12a9a683799c233a10bd"
+      "sha256": "8da633568a07d0fb3e9fe7326255c7b905b26b1d87aa03ffa13ab661a3e78fd1"
     },
     {
       "path": "/editorial/2026-11/09-content-workflow/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "b76e65313a9e5257de29e8c110f11171c6ca2b68d0b65a4ddd844689e114845b"
+      "sha256": "bb6ba59d9ab0c5ff61cfb14998852ee6a55caf52a2e0497d35610825bb0f3167"
     },
     {
       "path": "/editorial/2026-11/09-content-workflow/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "dace08e6069d9a947843505c90ba6d322d9da25be31ca8bbe45a85e3acfeb7d8"
+      "sha256": "3007ef75018bef324366dbbaf2c220b1f4bb413673ef52a724c3f56490b9bf06"
     },
     {
       "path": "/editorial/2026-11/10-handoff/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "7e7aa106412f9e92f3996871b969c630cafdbb2f58feb871254baa4e7d42fdf2"
+      "sha256": "22108ce1405ed68935342b822cdc327ab5a4ba6b51f8c5be66ed4540929acf9c"
     },
     {
       "path": "/editorial/2026-11/10-handoff/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "b38aca433599cdaf6d2b2368713b23199ce5bcb39b59f71645028b80417d6c1d"
+      "sha256": "a00912f0cdc45dd8c259172350a51b3e883395c989877c836ae7dd43f5566591"
     },
     {
       "path": "/editorial/2026-11/10-handoff/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "6de9d948ba41130c4c0726b81acd16b7f0216d987dbb5827ba1ba7cf2327fad8"
+      "sha256": "737945d0d1e912d2a4f53a7715bb8b80b5c539bbcbd88710e940449d0af0046d"
     },
     {
       "path": "/editorial/2026-11/10-handoff/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "2a670540445f4a5220deeb7bac250cb20277dea66d9f6a47e5d69c18010c1323"
+      "sha256": "a6e308856db527a54437b395ece785b74fedc7b9d5172e176f7dd8e88c345da0"
     },
     {
       "path": "/editorial/2026-11/10-handoff/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "cb37e773b0dd3e4c06453c7cace49ef07ee5f17710c0e6e33ba52e4474b41465"
+      "sha256": "b71768c9b4466c209a1690483c1f5ccdded4dd63f31b703d5dd804fdfa45f8b6"
     },
     {
       "path": "/editorial/2026-11/10-handoff/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "4a06b3678d9881b4fc96df9b5dd1a8f9dde0811e0f77760d43b65ee727eebdf6"
+      "sha256": "d8192e029c897459ccbd56966d087197781e6f55d7f3e13cbd497b42e0ee60a3"
     },
     {
       "path": "/editorial/2026-11/11-shopify-decision/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "ddd9d4504960c5652837be579eefffb4fa4c2f373d9c53be874ced586f2ec50a"
+      "sha256": "a21fed0ddaedcc285e34c5758fd28a094d4f49618449a92e0ce8864eee0338d3"
     },
     {
       "path": "/editorial/2026-11/11-shopify-decision/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "ad725ef647905c363e46c7ac384a4b7080970adf4c91659bfd3bcc1cbc1463f1"
+      "sha256": "6e1aa0b02595b88f96b54595065fb90b396428774116fd3e4f04676ee7f1255f"
     },
     {
       "path": "/editorial/2026-11/11-shopify-decision/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "28e03da3faed19d4b81ab47dd27b1eee17bcc7c1e7c138a74a3b6da15ad7994e"
+      "sha256": "4ddaf8cd6240ac9d82068b3ff1e7d0c4dcdace082f6849db17b11959a88eee52"
     },
     {
       "path": "/editorial/2026-11/11-shopify-decision/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "2028466887529051544afdece0a9a713c1a9c3bb4165ad803e740f7927634593"
+      "sha256": "484a0bb11de1fd7b7490f2b7844b8045e8307f13577c7a480aa6ce7a1824c734"
     },
     {
       "path": "/editorial/2026-11/11-shopify-decision/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "0b3afa3d79f4d322421ef0934fb095945889a5751de6793209762bc6baca876a"
+      "sha256": "3481b5120638ce140fec727c9cc8242e487a1a9d7f6455d6b0c8cdd56373f08e"
     },
     {
       "path": "/editorial/2026-11/11-shopify-decision/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "e014c0f81138d6b542a09a66584f668f27780cde4542f901e31b65b96d1d6e92"
+      "sha256": "844521ff2414236e476234ca13fa73c15492ec09d89572312aa8bdc73d7ce923"
     },
     {
       "path": "/editorial/2026-11/12-mahseri/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "26f60b0d6608631366b4c546fe6ae103a7ce9ed186bf696c57e5277dae77577a"
+      "sha256": "759907c846ae673e5b5cb5559dd336629e2f94ba516fbb4fc19545d0c52a0c13"
     },
     {
       "path": "/editorial/2026-11/12-mahseri/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "6be092c3c8b6449b519a66d5458dbc3f8f05fe46bb7a0013da5158927e1ca7d8"
+      "sha256": "b6e6a4ebeb6d2d2283a0f9a7a4b6b274e16e66df6b7bbc3915cd5251b8329fd3"
     },
     {
       "path": "/editorial/2026-11/12-mahseri/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "a2aedd9a321765a0adc2be587e1f57c3f7faff283db976f1d2e21ff80b2e400c"
+      "sha256": "bab09f874b3a1645b73334d99f56453fcf4955e2364a80af6c41e4b95f68c14e"
     },
     {
       "path": "/editorial/2026-11/12-mahseri/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "f89ae85a8186697f207cd4401d117f01009ded5f65dcd6f734bf81d3cea40b8c"
+      "sha256": "28e22456abf66b825a229ed8df40c974af6338787584097cb27df8ba2a373122"
     },
     {
       "path": "/editorial/2026-11/12-mahseri/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "cb3355337b94d0d70423a0dc0b94e7622859ff7eb288389570ea1705102bab49"
+      "sha256": "89e4168486b6a8d85586cff4d2ea9fdcc3f126c5fc7ba3a0dc745a2916204083"
     },
     {
       "path": "/editorial/2026-11/12-mahseri/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "c84bb9ccf8c37bb8616c0a263e255fdbfab5aa27eb3a5ac4d1b03fe480c1cb36"
+      "sha256": "4f5a86e4a60002c19a91caab3d4a863443f9a0f4b04299cfc696f893f6f0b4ca"
     },
     {
       "path": "/editorial/2026-11/13-recap/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "c7b46ff6441fa12fb939b3bb0721091c35b5d8ba8b86bac2afaef14eb41fd54a"
+      "sha256": "15625701025281c11a2418f69210be45e3d5720cf1bf5f3433b41a8b0fb5519a"
     },
     {
       "path": "/editorial/2026-11/13-recap/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "d6dafe5a5b0cf44680042ee9cb2408c513500fa3e2b0e601569682fa3230eb56"
+      "sha256": "c4912b0f3a9fa535e253270ab539775184ba0b5524ac399d49c62ebf5bdfc4ff"
     },
     {
       "path": "/editorial/2026-11/13-recap/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "fc6a70ae5b84ce89eff3cc4c3be9317d2cc78b99a34ba900cbabef5e9068a2f9"
+      "sha256": "5d75137162fe3f3bd74c92899353988c41172b49121c365049f845b70126f9ef"
     },
     {
       "path": "/editorial/2026-11/13-recap/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "37d3758585e7ff2e8847ec80c3f83f0d7e64d29e7bc4e6354d741a7b15d0a905"
+      "sha256": "16e4433c463b597413c02afa3668fcbf2ef975b435ff9eb1ed696c26b518d674"
     },
     {
       "path": "/editorial/2026-11/13-recap/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "0c496ef891711aa2111363c063aaa08190affd05c0b8bd4ca21840e39e19a6f3"
+      "sha256": "61750d7ec8df735a8dfe6eea4886e79d1a1c0451fa9338b469221b5bae459a2a"
     },
     {
       "path": "/editorial/2026-11/13-recap/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "4735dd495ece9d4a3c688fab7919136bc0812690db3dfae3682f69e78ff6232a"
+      "sha256": "1941c3eafab47e03b09f380fe7641be445e826c0b19f101c33818a90a150668a"
     },
     {
       "path": "/editorial/2026-11/14-inquiry/slide-1.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "18d960f6afa429a8951e9c99620d18ceb4949bb0372a85f360b91fad0104057b"
+      "sha256": "3b7cc68ec85c0e8bf2b7da8f88d795aaed9a494746fd7e0e60b9ac18fb74e9f7"
     },
     {
       "path": "/editorial/2026-11/14-inquiry/slide-2.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "0c1b1dce4af31783851174df3e4a7ff15daeaeffb2cd7ef6484e84d1cbc82d06"
+      "sha256": "7fa776831005f354f5e80478220bb411597988753c93088d356f46833d6b338b"
     },
     {
       "path": "/editorial/2026-11/14-inquiry/slide-3.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "88c27bbfdc0607cdf0273a6830d5833a02fe310ad334ce73701cb964abf648dd"
+      "sha256": "98e776761b66132790e7e77a85fe998206841c873b6d7ca00389b470846c9ea5"
     },
     {
       "path": "/editorial/2026-11/14-inquiry/slide-4.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "9565f0681d807072841a1211a63fd63cf7c9fea9ee16952b4e6dacfd2df667fb"
+      "sha256": "84d854600c17b2371401e2a9f3823ddd8e30aae10c71677d815faf9c7f36ca79"
     },
     {
       "path": "/editorial/2026-11/14-inquiry/slide-5.png",
       "kind": "slide",
       "width": 1080,
       "height": 1350,
-      "sha256": "2cb8a7b8ee1406cffca748588ef55481555a64752ba259074115824e9ad9bd38"
+      "sha256": "e2a8c4cd5e80c00a114a32d88484e15e6d217fe83c4cf9c88cd60182e460001c"
     },
     {
       "path": "/editorial/2026-11/14-inquiry/linkedin.png",
       "kind": "linkedin",
       "width": 1200,
       "height": 1350,
-      "sha256": "8c31098e4f2591c056271ae552a3e32019c3c159332a0c5814ec6023cb47996d"
+      "sha256": "599a52fe96b5d670d8a5237c6a9b6251bbc62f91e902588b53bbf4d5d98eb6bf"
     },
     {
       "path": "/editorial/2026-11/articles/brief.png",
       "kind": "article",
       "width": 1600,
       "height": 900,
-      "sha256": "7d734779574f83858bf926ed940cd86d1188e77d88e3b55fde7e238e5d798132"
+      "sha256": "a3cdc47e08fcd261e320f4eba587cae882e24fe152ae5b5e77b65d5bac7fff21"
     },
     {
       "path": "/editorial/2026-11/stories/week-1-1.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "57d5847844ce5fc58ba3f59254894c1a61e80a5a63a9b00120b9554494c86acc"
+      "sha256": "688dd1afff2e0d98571b76da6f146f088314a3d52318292df56d482d7e367d76"
     },
     {
       "path": "/editorial/2026-11/stories/week-1-2.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "73607a1afe45808c4d43d380689c5dfa034c2b18b3d4abdbb92e0858d8960aae"
+      "sha256": "0c71c07f4a460532d08057524b618cd55b8b16b2dffd74627b73338428a7a405"
     },
     {
       "path": "/editorial/2026-11/articles/rtl.png",
       "kind": "article",
       "width": 1600,
       "height": 900,
-      "sha256": "4ce620c306e4a99c6936774c2b6029a01583bc8fa6e24c59c452b5a856457247"
+      "sha256": "146649f5adda4c9184a4312eb4467f2589d4b7537f28de7782f96293ec2c9c61"
     },
     {
       "path": "/editorial/2026-11/stories/week-2-1.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "278b61a5eec6dad66859b737e7c3f65f9a23ea11a8e186c203f14bfb09962cd7"
+      "sha256": "8b15bb81422144deb16fcd948ff72731206952991655783456b7852920f38f47"
     },
     {
       "path": "/editorial/2026-11/stories/week-2-2.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "64d437025393bb1870ea9bd95b6d3606fc2730ca0d866d34f7fed17c81c6e95a"
+      "sha256": "d78d0f8bff492b7782be4aa758ef4b413707da6d8f6a4bc873f6037466b8e103"
     },
     {
       "path": "/editorial/2026-11/articles/ai.png",
       "kind": "article",
       "width": 1600,
       "height": 900,
-      "sha256": "4c978bcbd66ed322cfc5dc4bca99d1083a883f51f5dfb7f160a000efa40bf8f0"
+      "sha256": "318e563c349f7c55ce87ee3c23d989a5d8591c73f0b838c4643f5750523be4af"
     },
     {
       "path": "/editorial/2026-11/stories/week-3-1.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "f926c7858c8d5da910ccf4d3a19cad14565783bbb4f9bd4a8c87112ae1f95717"
+      "sha256": "c112ee2d962cd8571c36b25aca777b3d30d652bd8d24896ce48ea5026057b137"
     },
     {
       "path": "/editorial/2026-11/stories/week-3-2.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "dfe3bbefbbae00deb300894be907502b074ecd7c14ed5441d88fe5e7c6333f7c"
+      "sha256": "9adccfd52da94a622fcbb8b810c6b064bb6b32f3446e0e157c7cb930a4a90fad"
     },
     {
       "path": "/editorial/2026-11/articles/shopify.png",
       "kind": "article",
       "width": 1600,
       "height": 900,
-      "sha256": "7afdd7d41c59c15fe0b16c8bd736409e948a24e5459501eefb18b659cd965d0f"
+      "sha256": "499b094b42b32950d59ec074b8efe1d7e07620d0bc4ee8a0458b73deab14ea6f"
     },
     {
       "path": "/editorial/2026-11/stories/week-4-1.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "c75fe2cef25e60ea81e776602e874ce37b18e087a6658738748e0c516f9b8802"
+      "sha256": "871a07e7f109f40f19104a1559aba2a53074ade1822200689e54326b64285c0a"
     },
     {
       "path": "/editorial/2026-11/stories/week-4-2.png",
       "kind": "story",
       "width": 1080,
       "height": 1920,
-      "sha256": "4e36cb490696fdfdf96472d3fe2603b81e5fa55cfe9274adc7a9374dfcb527d4"
+      "sha256": "47b9f5d6479810921d5f884bb7ad3d5d37c2490593b4796e3b5b39ab66a63b4a"
     }
   ],
   "stories": [

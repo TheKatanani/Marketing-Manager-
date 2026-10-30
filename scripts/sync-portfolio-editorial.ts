@@ -67,6 +67,7 @@ async function main() {
     fs.copyFileSync(path.join(process.cwd(),"public",relative),dest)
   }
   fs.copyFileSync(path.join(assetRoot,"asset-index.json"),path.join(portfolio,"public/editorial/2026-11/asset-index.json"))
+  fs.cpSync(path.join(process.cwd(),"public/brand/katanani"),path.join(portfolio,"public/brand/katanani"),{recursive:true})
   console.log("Synchronized four bilingual articles and 96 graphics; preserved the earlier handoff article.")
 }
 main().catch(error=>{console.error(error);process.exitCode=1})

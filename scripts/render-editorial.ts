@@ -4,6 +4,7 @@ import { novemberPack } from "../src/lib/editorial/november-2026"
 import { renderEditorialPng } from "../src/lib/editorial/png"
 import { articleTopic, artDirection } from "../src/lib/editorial/art-direction"
 import { createHash } from "node:crypto"
+import { brand } from "../src/lib/editorial/brand"
 const output=path.join(process.cwd(),"public/editorial/2026-11")
 fs.mkdirSync(output,{recursive:true})
 let count=0
@@ -41,5 +42,5 @@ for(const [i,a] of novemberPack.articles.entries()) {
 if(count!==96) throw Error(`Expected 96 graphics, received ${count}`)
 // Retire only the replaced campaign cover; the portfolio keeps its older article.
 fs.rmSync(path.join(output,"articles/handoff.png"),{force:true})
-fs.writeFileSync(path.join(output,"asset-index.json"),JSON.stringify({images:count,assets,stories:novemberPack.articles.map((a,i)=>({date:a.scheduledFor,caption:a.excerpt.ar,linkSticker:`https://thekatanani.com/ar/blog/${a.slug}`,assets:[`stories/week-${i+1}-1.png`,`stories/week-${i+1}-2.png`]}))},null,2))
+fs.writeFileSync(path.join(output,"asset-index.json"),JSON.stringify({images:count,brand:{...brand,logoSha256:createHash("sha256").update(fs.readFileSync(path.join(process.cwd(),"public",brand.logo))).digest("hex")},assets,stories:novemberPack.articles.map((a,i)=>({date:a.scheduledFor,caption:a.excerpt.ar,linkSticker:`https://thekatanani.com/ar/blog/${a.slug}`,assets:[`stories/week-${i+1}-1.png`,`stories/week-${i+1}-2.png`]}))},null,2))
 console.log(`Rendered ${count} branded PNG graphics.`)

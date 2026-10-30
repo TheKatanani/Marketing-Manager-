@@ -1,0 +1,44 @@
+{
+  "secondaryPalette": [
+    "#B9AED8",
+    "#A7C8B4"
+  ],
+  "wordmark": "Original supplied PNG; never retyped, redrawn, recolored or stretched",
+  "conversation": "أنشئ هوية بصرية خطوة بخطوة",
+  "assets": [
+    {
+      "unchanged": true,
+      "file": "primary-transparent.png",
+      "sha256": "6e9d25b629635510fa38705dee1f0983ca519bb2855a53c6090086b14b8e9606",
+      "source": "01-Logos/primary-transparent.png"
+    },
+    {
+      "unchanged": true,
+      "file": "primary-reversed.png",
+      "sha256": "9399b109322166baebc53f6ede70acc96fab32c31c9ee4bbb66b6628621f7d82",
+      "source": "01-Logos/primary-reversed.png"
+    },
+    {
+      "unchanged": true,
+      "file": "monogram-transparent.png",
+      "sha256": "2f477f60277926a36e4e105a98e919f5f249cf3b619a63ed8ef1d5fcfc3c788d",
+      "source": "01-Logos/monogram-transparent.png"
+    }
+  ],
+  "revision": "katanani-approved-identity-v3",
+  "corePalette": [
+    "#0A4D68",
+    "#D2E5F0",
+    "#2B3451",
+    "#FFFFFF"
+  ],
+  "source": "User-supplied KATANANI-Brand-Kit",
+  "name": "THE KATANANI",
+  "supportingFonts": [
+    "Source Serif 4",
+    "Noto Naskh Arabic",
+    "Noto Sans",
+    "Noto Sans Arabic",
+    "JetBrains Mono"
+  ]
+}
