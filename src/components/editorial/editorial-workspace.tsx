@@ -90,11 +90,11 @@ export function EditorialWorkspace({ campaign, strategy }: EditorialWorkspacePro
   // Weekly themes definition
   const themes = [
     { key: "ALL", labelAr: "جميع الموضوعات (22)", labelEn: "All Topics (22)" },
-    { key: "1. المتطلبات قبل الأدوات", labelAr: "الأسبوع 1: المتطلبات قبل الأدوات", labelEn: "Week 1: Requirements First" },
-    { key: "2. واجهات تخدم المستخدمين", labelAr: "الأسبوع 2: واجهات تخدم المستخدمين", labelEn: "Week 2: User-Centric UI" },
-    { key: "3. الذكاء الاصطناعي في مسار قابل للمراجعة", labelAr: "الأسبوع 3: الذكاء الاصطناعي ومسار المراجعة", labelEn: "Week 3: AI & Review Workflow" },
-    { key: "4. تسليم مستدام", labelAr: "الأسبوع 4: تسليم مستدام وشوبيفاي", labelEn: "Week 4: Maintainable Delivery" },
-    { key: "ختام نوفمبر", labelAr: "الختام والتواصل", labelEn: "Wrap-up & Inquiries" },
+    { key: "قرارات قبل الكود", labelAr: "الأسبوع 1: قرارات قبل الكود", labelEn: "Week 1: Decisions Before Code" },
+    { key: "واجهة تتحمل الواقع", labelAr: "الأسبوع 2: واجهة تتحمل الواقع", labelEn: "Week 2: Real-World Interfaces" },
+    { key: "AI تحت المراجعة", labelAr: "الأسبوع 3: مراجعة تغييرات AI", labelEn: "Week 3: Reviewable AI Changes" },
+    { key: "تشغيل بلا مفاجآت", labelAr: "الأسبوع 4: التشغيل وشوبيفاي", labelEn: "Week 4: Operations & Shopify" },
+    { key: "قرار المشروع التالي", labelAr: "قرار المشروع التالي", labelEn: "Your Next Project" },
   ]
 
   const handleInstall = () => {
@@ -1028,7 +1028,7 @@ export function EditorialWorkspace({ campaign, strategy }: EditorialWorkspacePro
                 <span>{isRtl ? "تحميل الفهرس (JSON)" : "Asset Index"}</span>
               </a>
               <a
-                href="file:///C:/Users/Mohammed%20Katanani/Documents/Codex/2026-10-27/we-ll-add-certifications-programs-to-2/outputs/november-2026-editorial-assets.zip"
+                href="/editorial/november-2026-editorial-assets.zip"
                 download="november-2026-editorial-assets.zip"
                 className="px-5 py-2.5 rounded-xl bg-[#0A4D68] hover:bg-[#0A4D68]/90 text-white text-xs font-bold shadow-md transition-all flex items-center gap-2"
               >
@@ -1040,7 +1040,7 @@ export function EditorialWorkspace({ campaign, strategy }: EditorialWorkspacePro
 
           {/* Asset Grid Preview */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {["01-brief", "02-proposal", "03-coachspace", "04-rtl", "05-performance", "06-marwan", "07-ai-review", "08-bug-report", "09-content-workflow", "10-handoff", "11-shopify-decision", "12-mahseri"].map((key) => (
+            {["01-brief", "02-proposal", "03-coachspace", "04-rtl", "05-performance", "06-marwan", "07-ai-review", "08-bug-report", "09-content-workflow", "10-handoff", "11-shopify-decision", "12-mahseri", "13-recap", "14-inquiry"].map((key) => (
               <div key={key} className="bg-white p-2.5 rounded-xl border border-[#D2E5F0] space-y-2 group">
                 <div className="aspect-[4/5] bg-[#0A4D68] rounded-lg overflow-hidden flex items-center justify-center shadow-sm">
                   <img

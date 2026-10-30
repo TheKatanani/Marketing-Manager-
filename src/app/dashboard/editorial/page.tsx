@@ -1,5 +1,5 @@
 import { getActiveUser } from "@/lib/active-user"
-import { getEditorialCampaign, importNovemberPack, ensureDatabaseSchema } from "@/lib/editorial/service"
+import { getEditorialCampaign, importNovemberPack, ensureDatabaseSchema, NOVEMBER_REVISION } from "@/lib/editorial/service"
 import { EditorialWorkspace } from "@/components/editorial/editorial-workspace"
 import { novemberPack } from "@/lib/editorial/november-2026"
 
@@ -13,7 +13,9 @@ export default async function EditorialPage() {
     try {
       await ensureDatabaseSchema()
       campaign = await getEditorialCampaign(user.id)
-      if (!campaign) {
+      let revision: string | undefined
+      try { revision = JSON.parse(campaign?.strategy || "{}").revision } catch { /* Older campaign metadata. */ }
+      if (!campaign || revision !== NOVEMBER_REVISION) {
         await importNovemberPack(user.id)
         campaign = await getEditorialCampaign(user.id)
       }

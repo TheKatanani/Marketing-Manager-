@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import { novemberPack } from "./november-2026"
+export const NOVEMBER_REVISION = "2026-10-29-engineering-v2"
 
 let schemaEnsured = false
 
@@ -47,16 +48,26 @@ export async function importNovemberPack(userId: string) {
   await ensureDatabaseSchema()
   return prisma.$transaction(async tx => {
     const p=novemberPack
-    const campaign=await tx.campaign.upsert({where:{userId_planKey:{userId,planKey:p.key}},update:{},create:{userId,planKey:p.key,name:p.name,objective:p.objective,startDate:new Date(p.startsAt),endDate:new Date(p.endsAt),status:"PLANNING",strategy:JSON.stringify(p.strategy)}})
+    const campaignContent={name:p.name,objective:p.objective,strategy:JSON.stringify({...p.strategy,revision:NOVEMBER_REVISION})}
+    const campaign=await tx.campaign.upsert({where:{userId_planKey:{userId,planKey:p.key}},update:campaignContent,create:{userId,planKey:p.key,...campaignContent,startDate:new Date(p.startsAt),endDate:new Date(p.endsAt),status:"PLANNING"}})
     const articles=new Map<string,string>()
     for(const a of p.articles) for(const lang of ["ar","en"] as const) {
-      const saved=await tx.blogPost.upsert({where:{userId_slug:{userId,slug:`${a.slug}-${lang}`}},update:{},create:{userId,campaignId:campaign.id,slug:`${a.slug}-${lang}`,title:a.title[lang],excerpt:a.excerpt[lang],content:a.content[lang],language:lang,category:a.category,tags:JSON.stringify(a.tags),scheduledFor:new Date(a.scheduledFor),canonicalUrl:`https://thekatanani.com/${lang}/blog/${a.slug}`,coverImage:a.cover,status:"PLANNED",readTimeMinutes:Math.max(3,Math.ceil(a.content[lang].split(/\s+/).length/180)),seoTitle:a.title[lang],seoDescription:a.excerpt[lang],sources:JSON.stringify(a.sources)}})
+      const content={campaignId:campaign.id,title:a.title[lang],excerpt:a.excerpt[lang],content:a.content[lang],language:lang,category:a.category,tags:JSON.stringify(a.tags),canonicalUrl:`https://thekatanani.com/${lang}/blog/${a.slug}`,coverImage:a.cover,readTimeMinutes:Math.max(3,Math.ceil(a.content[lang].split(/\s+/).length/180)),seoTitle:a.title[lang],seoDescription:a.excerpt[lang],sources:JSON.stringify(a.sources)}
+      const saved=await tx.blogPost.upsert({where:{userId_slug:{userId,slug:`${a.slug}-${lang}`}},update:content,create:{userId,slug:`${a.slug}-${lang}`,...content,scheduledFor:new Date(a.scheduledFor),status:"PLANNED"}})
       articles.set(`${a.key}-${lang}`,saved.id)
     }
     for(const t of p.topics) {
       const id=`nov26-${userId}-${t.key}`
-      await tx.post.upsert({where:{id},update:{},create:{id,userId,campaignId:campaign.id,title:t.title,status:"PLANNED",weekTheme:t.theme,sourceType:t.sourceType,sourceUrl:t.sourceUrl,sourceLabel:t.sourceLabel,articleId:t.articleKey?articles.get(`${t.articleKey}-${t.versions[0].language}`):null,scheduledFor:new Date(t.versions[0].scheduledFor),versions:{create:t.versions.map(v=>({platform:v.platform,language:v.language,content:v.content,hashtags:JSON.stringify(v.hashtags),carouselSlides:v.slides?JSON.stringify(v.slides):null,status:"PLANNED",scheduledFor:new Date(v.scheduledFor),assetPaths:JSON.stringify(v.assets)}))}}})
+      const content={campaignId:campaign.id,title:t.title,weekTheme:t.theme,sourceType:t.sourceType,sourceUrl:t.sourceUrl??null,sourceLabel:t.sourceLabel??null,articleId:t.articleKey?articles.get(`${t.articleKey}-${t.versions[0].language}`)??null:null}
+      await tx.post.upsert({where:{id},update:content,create:{id,userId,...content,status:"PLANNED",scheduledFor:new Date(t.versions[0].scheduledFor)}})
+      for(const v of t.versions) {
+        const versionContent={platform:v.platform,language:v.language,content:v.content,hashtags:JSON.stringify(v.hashtags),carouselSlides:v.slides?JSON.stringify(v.slides):null,assetPaths:JSON.stringify(v.assets)}
+        // Refresh the authorized campaign copy without resetting publication evidence or adjusted schedules.
+        await tx.postVersion.upsert({where:{postId_platform:{postId:id,platform:v.platform}},update:versionContent,create:{postId:id,...versionContent,status:"PLANNED",scheduledFor:new Date(v.scheduledFor)}})
+      }
     }
+    // Keep the prior handoff article, but remove it from this four-anchor campaign.
+    await tx.blogPost.updateMany({where:{userId,campaignId:campaign.id,slug:{in:["website-handoff-and-maintenance-checklist-ar","website-handoff-and-maintenance-checklist-en"]}},data:{campaignId:null}})
     return {campaignId:campaign.id,topics:p.topics.length,versions:p.topics.reduce((n,t)=>n+t.versions.length,0),articles:p.articles.length}
   },{timeout:60000})
 }

@@ -1,9 +1,683 @@
 {
   "images": 96,
+  "assets": [
+    {
+      "path": "/editorial/2026-11/01-brief/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "d74b597a2a2b338a7c1044bb7a7e40709d236fb57691b349dd35abaca6924d8f"
+    },
+    {
+      "path": "/editorial/2026-11/01-brief/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "afbe3789185edd132efc63f071e894d5f292953bceff0a0d7fa40d428d853e9e"
+    },
+    {
+      "path": "/editorial/2026-11/01-brief/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "bd51e03ebf7e36a5f0c4b1e901122ca00a07bd23de3e4fe1eefe21e7f0d42b8d"
+    },
+    {
+      "path": "/editorial/2026-11/01-brief/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "9c5db21697764fcbb08329c78e989e15ea95b3afa1e7c3504246c0ce0e94c46d"
+    },
+    {
+      "path": "/editorial/2026-11/01-brief/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "672072c690afa6b07f288671020ee0f9449db723f29d0571b17a17e75dcaec20"
+    },
+    {
+      "path": "/editorial/2026-11/01-brief/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "a3dc840e9b835b8a2e1ea7386515a391fff0e08a2b3c961d0b2c84a9eb1650ce"
+    },
+    {
+      "path": "/editorial/2026-11/02-proposal/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "5260d3f27146ef81213e8105b6c4bead33be744dc5ae231e4d379f2a2e0a1043"
+    },
+    {
+      "path": "/editorial/2026-11/02-proposal/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "70e61930194d8e363eb942794111b3054399986353bf4a6ef757b6fb659269c4"
+    },
+    {
+      "path": "/editorial/2026-11/02-proposal/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "2d328fce03ae756f18c8ab95da90dd08563cd8ed0181ec274956f7429b45eb7e"
+    },
+    {
+      "path": "/editorial/2026-11/02-proposal/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "b4f01862ac2b064bd5a5ec086d1b7a7e754feb335d0b9d54af8838366d7723e6"
+    },
+    {
+      "path": "/editorial/2026-11/02-proposal/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "19a1b0f594a648f15efd9c529c25f177fbf32c2294c94443b60bb13f46c16dc8"
+    },
+    {
+      "path": "/editorial/2026-11/02-proposal/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "9714f1cf5b0c33cc92002a537aaecdc8269cfb915f99f3289518b3423c5f28bd"
+    },
+    {
+      "path": "/editorial/2026-11/03-coachspace/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "f336e1c6c53538e6a9f76bd1927ed0beb372e6ee4421144a11d6ab7c73d29453"
+    },
+    {
+      "path": "/editorial/2026-11/03-coachspace/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "8b0ada3400cda6ab05892859aa3e32e170c08bf438402b2316da6548429b135a"
+    },
+    {
+      "path": "/editorial/2026-11/03-coachspace/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "14a3af272ae9cea2e3844dbdfae031e9459157c56f560cf9d7d3e0cf77f8406f"
+    },
+    {
+      "path": "/editorial/2026-11/03-coachspace/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "80f03718d372737389ea7742ecafd5aa7167415710ac5f513b05d51b65b464c4"
+    },
+    {
+      "path": "/editorial/2026-11/03-coachspace/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "bdaf2e169b2b23707914a4d5ca578ea2127f26eeb57637f47e8e990377d5efcb"
+    },
+    {
+      "path": "/editorial/2026-11/03-coachspace/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "b3a099be2b38326b80b3e19ac0aa5faa664b24b4d276206e204a158aa49d2df1"
+    },
+    {
+      "path": "/editorial/2026-11/04-rtl/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "1d378473c0aa4ae02ac1b0ad3ca7b1a259f5e49e9720a059e7899969cfb0fe40"
+    },
+    {
+      "path": "/editorial/2026-11/04-rtl/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "9147cfff4a8ed94a68815c4fc8c868158ab3a41e27ae1fb67de77867bc150db0"
+    },
+    {
+      "path": "/editorial/2026-11/04-rtl/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "c6c9664de589ad1472d3b5282d011d621f8579e56d375dd8890a4509b1e47793"
+    },
+    {
+      "path": "/editorial/2026-11/04-rtl/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "a1aae0b41b0c7013e2a70e7151b1884e22fc8bdc6aca127478905fa4e0f0e502"
+    },
+    {
+      "path": "/editorial/2026-11/04-rtl/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "a3ddf72b2cd5eb55d25e9750f5b6a4a4ca485da4a2d8e73765f4b0de0262ffdb"
+    },
+    {
+      "path": "/editorial/2026-11/04-rtl/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "ec36a06b885ea992765de48b152b03ae535f46bd22a1ba39d088d027bff26041"
+    },
+    {
+      "path": "/editorial/2026-11/05-performance/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "f075be3a8a6d4e3b5269df6eecaa197ffe3bd90c42dacf8e7e940dc391ad0d4d"
+    },
+    {
+      "path": "/editorial/2026-11/05-performance/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "abb17b5c64840119e8206a396399a552954c218963694a1b6aa116b2fe963d06"
+    },
+    {
+      "path": "/editorial/2026-11/05-performance/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "96de9d034b8168e2a2a7e9e847aedf39f242a51b97437d687a17d55836afefd8"
+    },
+    {
+      "path": "/editorial/2026-11/05-performance/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "006c3e7b1c1ea01964bdcc6b790dc3be07e527969aee97ec7a46a4b0c73d4493"
+    },
+    {
+      "path": "/editorial/2026-11/05-performance/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "579b94568db07aedb19844ad32842db9bc9d228d67e032f2172bc377b18754ef"
+    },
+    {
+      "path": "/editorial/2026-11/05-performance/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "ab2a0f6b32d7349e337ae92c6bb0ca5ed10b0b839bd0ceb171faae72ae560774"
+    },
+    {
+      "path": "/editorial/2026-11/06-marwan/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "b07fb28022874324a9c055ee3f113aad93c07519a9d4e3a0cc51a8c61f6e35d9"
+    },
+    {
+      "path": "/editorial/2026-11/06-marwan/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "21a4b3becbd5d0f35a78048df91118075cb33650bcc20067342343e4619512f6"
+    },
+    {
+      "path": "/editorial/2026-11/06-marwan/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "60ea15dc08daee5803d92326ac66150df1bedafd244ceb64639a848b0e8a97bb"
+    },
+    {
+      "path": "/editorial/2026-11/06-marwan/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "0e22b123c3b5a67ee0528414a4eb65d9cbab4f1501f75cfd5a189b927130dce4"
+    },
+    {
+      "path": "/editorial/2026-11/06-marwan/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "59d1874720cad3a7f444dc73bfc34d5ae7573213d1bc5d5be0935d4133d425b5"
+    },
+    {
+      "path": "/editorial/2026-11/06-marwan/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "f57a1fe88a3062ca5cbd591d9bed1fe01fbc64c0d13e076709979e07f3febad9"
+    },
+    {
+      "path": "/editorial/2026-11/07-ai-review/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "930208d089614b8cd136d176877eb5b52a135997ac7c55c063af90a54f5bcec8"
+    },
+    {
+      "path": "/editorial/2026-11/07-ai-review/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "5ecbb36d77d519b77390d61eed4894874236386f5427d47299a4e632aa4b6b4f"
+    },
+    {
+      "path": "/editorial/2026-11/07-ai-review/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "83147eaaa49c98dfb0048a39c979aa24563933fbc7253c68166d08817068a12e"
+    },
+    {
+      "path": "/editorial/2026-11/07-ai-review/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "ae6ce3d3c501cf760366e212b0466c0b838f80117c49fca18d899a933fc73849"
+    },
+    {
+      "path": "/editorial/2026-11/07-ai-review/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "35aca8677176a10cdbe2405c267a5e8228fb9c101eee607ee79fbe3cff70a290"
+    },
+    {
+      "path": "/editorial/2026-11/07-ai-review/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "e82b692b63524cdff5ad0b28b175e9e67d84f1d8e36537b0252584dad6ef033f"
+    },
+    {
+      "path": "/editorial/2026-11/08-bug-report/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "50bfdd8e821aaa38dd2bc61705a21262740e409971f521cefc9bfef034c6711a"
+    },
+    {
+      "path": "/editorial/2026-11/08-bug-report/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "16097c3ec21b76f2656533e1aa5c42aa79059ffd8990ecc00036e1ba945bfa47"
+    },
+    {
+      "path": "/editorial/2026-11/08-bug-report/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "62685b44a80cd9ed46928488c636012af0b413b1c12b7ed7de5bfb4b78e0c138"
+    },
+    {
+      "path": "/editorial/2026-11/08-bug-report/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "eac0ced903d05525542638163d30dc3a6735ad6217a77234f78a3443c7a38cc8"
+    },
+    {
+      "path": "/editorial/2026-11/08-bug-report/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "4a8f15de06230d4e91f2611d77df297c122a7843313f4f97ad370fc5d8b02cb2"
+    },
+    {
+      "path": "/editorial/2026-11/08-bug-report/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "1825518f4f098980cb858438c9488e2f798ef16d9b501da3ef361390e0fcc726"
+    },
+    {
+      "path": "/editorial/2026-11/09-content-workflow/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "5e5d8502ed8ef1739967deb2fbae05c85b2aebde0f867ca94d3efaf55a11ffd6"
+    },
+    {
+      "path": "/editorial/2026-11/09-content-workflow/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "fc557c20202bcc07a72fbe8159cb2fad6d064eee2557f8c4284880d617f4fbd5"
+    },
+    {
+      "path": "/editorial/2026-11/09-content-workflow/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "93726c2acc042aea1d4f4b47c9dc1133224ba404657b3691419c7f953b432abf"
+    },
+    {
+      "path": "/editorial/2026-11/09-content-workflow/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "ec963f35c901a1a42add8090b8afb6b528ab0fac0e2f12a9a683799c233a10bd"
+    },
+    {
+      "path": "/editorial/2026-11/09-content-workflow/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "b76e65313a9e5257de29e8c110f11171c6ca2b68d0b65a4ddd844689e114845b"
+    },
+    {
+      "path": "/editorial/2026-11/09-content-workflow/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "dace08e6069d9a947843505c90ba6d322d9da25be31ca8bbe45a85e3acfeb7d8"
+    },
+    {
+      "path": "/editorial/2026-11/10-handoff/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "7e7aa106412f9e92f3996871b969c630cafdbb2f58feb871254baa4e7d42fdf2"
+    },
+    {
+      "path": "/editorial/2026-11/10-handoff/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "b38aca433599cdaf6d2b2368713b23199ce5bcb39b59f71645028b80417d6c1d"
+    },
+    {
+      "path": "/editorial/2026-11/10-handoff/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "6de9d948ba41130c4c0726b81acd16b7f0216d987dbb5827ba1ba7cf2327fad8"
+    },
+    {
+      "path": "/editorial/2026-11/10-handoff/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "2a670540445f4a5220deeb7bac250cb20277dea66d9f6a47e5d69c18010c1323"
+    },
+    {
+      "path": "/editorial/2026-11/10-handoff/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "cb37e773b0dd3e4c06453c7cace49ef07ee5f17710c0e6e33ba52e4474b41465"
+    },
+    {
+      "path": "/editorial/2026-11/10-handoff/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "4a06b3678d9881b4fc96df9b5dd1a8f9dde0811e0f77760d43b65ee727eebdf6"
+    },
+    {
+      "path": "/editorial/2026-11/11-shopify-decision/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "ddd9d4504960c5652837be579eefffb4fa4c2f373d9c53be874ced586f2ec50a"
+    },
+    {
+      "path": "/editorial/2026-11/11-shopify-decision/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "ad725ef647905c363e46c7ac384a4b7080970adf4c91659bfd3bcc1cbc1463f1"
+    },
+    {
+      "path": "/editorial/2026-11/11-shopify-decision/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "28e03da3faed19d4b81ab47dd27b1eee17bcc7c1e7c138a74a3b6da15ad7994e"
+    },
+    {
+      "path": "/editorial/2026-11/11-shopify-decision/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "2028466887529051544afdece0a9a713c1a9c3bb4165ad803e740f7927634593"
+    },
+    {
+      "path": "/editorial/2026-11/11-shopify-decision/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "0b3afa3d79f4d322421ef0934fb095945889a5751de6793209762bc6baca876a"
+    },
+    {
+      "path": "/editorial/2026-11/11-shopify-decision/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "e014c0f81138d6b542a09a66584f668f27780cde4542f901e31b65b96d1d6e92"
+    },
+    {
+      "path": "/editorial/2026-11/12-mahseri/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "26f60b0d6608631366b4c546fe6ae103a7ce9ed186bf696c57e5277dae77577a"
+    },
+    {
+      "path": "/editorial/2026-11/12-mahseri/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "6be092c3c8b6449b519a66d5458dbc3f8f05fe46bb7a0013da5158927e1ca7d8"
+    },
+    {
+      "path": "/editorial/2026-11/12-mahseri/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "a2aedd9a321765a0adc2be587e1f57c3f7faff283db976f1d2e21ff80b2e400c"
+    },
+    {
+      "path": "/editorial/2026-11/12-mahseri/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "f89ae85a8186697f207cd4401d117f01009ded5f65dcd6f734bf81d3cea40b8c"
+    },
+    {
+      "path": "/editorial/2026-11/12-mahseri/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "cb3355337b94d0d70423a0dc0b94e7622859ff7eb288389570ea1705102bab49"
+    },
+    {
+      "path": "/editorial/2026-11/12-mahseri/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "c84bb9ccf8c37bb8616c0a263e255fdbfab5aa27eb3a5ac4d1b03fe480c1cb36"
+    },
+    {
+      "path": "/editorial/2026-11/13-recap/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "c7b46ff6441fa12fb939b3bb0721091c35b5d8ba8b86bac2afaef14eb41fd54a"
+    },
+    {
+      "path": "/editorial/2026-11/13-recap/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "d6dafe5a5b0cf44680042ee9cb2408c513500fa3e2b0e601569682fa3230eb56"
+    },
+    {
+      "path": "/editorial/2026-11/13-recap/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "fc6a70ae5b84ce89eff3cc4c3be9317d2cc78b99a34ba900cbabef5e9068a2f9"
+    },
+    {
+      "path": "/editorial/2026-11/13-recap/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "37d3758585e7ff2e8847ec80c3f83f0d7e64d29e7bc4e6354d741a7b15d0a905"
+    },
+    {
+      "path": "/editorial/2026-11/13-recap/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "0c496ef891711aa2111363c063aaa08190affd05c0b8bd4ca21840e39e19a6f3"
+    },
+    {
+      "path": "/editorial/2026-11/13-recap/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "4735dd495ece9d4a3c688fab7919136bc0812690db3dfae3682f69e78ff6232a"
+    },
+    {
+      "path": "/editorial/2026-11/14-inquiry/slide-1.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "18d960f6afa429a8951e9c99620d18ceb4949bb0372a85f360b91fad0104057b"
+    },
+    {
+      "path": "/editorial/2026-11/14-inquiry/slide-2.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "0c1b1dce4af31783851174df3e4a7ff15daeaeffb2cd7ef6484e84d1cbc82d06"
+    },
+    {
+      "path": "/editorial/2026-11/14-inquiry/slide-3.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "88c27bbfdc0607cdf0273a6830d5833a02fe310ad334ce73701cb964abf648dd"
+    },
+    {
+      "path": "/editorial/2026-11/14-inquiry/slide-4.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "9565f0681d807072841a1211a63fd63cf7c9fea9ee16952b4e6dacfd2df667fb"
+    },
+    {
+      "path": "/editorial/2026-11/14-inquiry/slide-5.png",
+      "kind": "slide",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "2cb8a7b8ee1406cffca748588ef55481555a64752ba259074115824e9ad9bd38"
+    },
+    {
+      "path": "/editorial/2026-11/14-inquiry/linkedin.png",
+      "kind": "linkedin",
+      "width": 1200,
+      "height": 1350,
+      "sha256": "8c31098e4f2591c056271ae552a3e32019c3c159332a0c5814ec6023cb47996d"
+    },
+    {
+      "path": "/editorial/2026-11/articles/brief.png",
+      "kind": "article",
+      "width": 1600,
+      "height": 900,
+      "sha256": "7d734779574f83858bf926ed940cd86d1188e77d88e3b55fde7e238e5d798132"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-1-1.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "57d5847844ce5fc58ba3f59254894c1a61e80a5a63a9b00120b9554494c86acc"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-1-2.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "73607a1afe45808c4d43d380689c5dfa034c2b18b3d4abdbb92e0858d8960aae"
+    },
+    {
+      "path": "/editorial/2026-11/articles/rtl.png",
+      "kind": "article",
+      "width": 1600,
+      "height": 900,
+      "sha256": "4ce620c306e4a99c6936774c2b6029a01583bc8fa6e24c59c452b5a856457247"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-2-1.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "278b61a5eec6dad66859b737e7c3f65f9a23ea11a8e186c203f14bfb09962cd7"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-2-2.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "64d437025393bb1870ea9bd95b6d3606fc2730ca0d866d34f7fed17c81c6e95a"
+    },
+    {
+      "path": "/editorial/2026-11/articles/ai.png",
+      "kind": "article",
+      "width": 1600,
+      "height": 900,
+      "sha256": "4c978bcbd66ed322cfc5dc4bca99d1083a883f51f5dfb7f160a000efa40bf8f0"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-3-1.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f926c7858c8d5da910ccf4d3a19cad14565783bbb4f9bd4a8c87112ae1f95717"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-3-2.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "dfe3bbefbbae00deb300894be907502b074ecd7c14ed5441d88fe5e7c6333f7c"
+    },
+    {
+      "path": "/editorial/2026-11/articles/shopify.png",
+      "kind": "article",
+      "width": 1600,
+      "height": 900,
+      "sha256": "7afdd7d41c59c15fe0b16c8bd736409e948a24e5459501eefb18b659cd965d0f"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-4-1.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "c75fe2cef25e60ea81e776602e874ce37b18e087a6658738748e0c516f9b8802"
+    },
+    {
+      "path": "/editorial/2026-11/stories/week-4-2.png",
+      "kind": "story",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "4e36cb490696fdfdf96472d3fe2603b81e5fa55cfe9274adc7a9374dfcb527d4"
+    }
+  ],
   "stories": [
     {
       "date": "2026-11-01T06:00:00.000Z",
-      "caption": "قائمة عملية تحدد هدف الموقع، مستخدمه، محتواه، تكاملاته، وحدود التسليم قبل تحويل الفكرة إلى سعر وخطة تنفيذ.",
+      "caption": "حوّل طلب الموقع إلى رحلة واختبارات قبول: ملكية البيانات، حدود التكامل، الإعادة الآمنة، واعتماديات التقدير.",
       "linkSticker": "https://thekatanani.com/ar/blog/website-brief-before-choosing-tools",
       "assets": [
         "stories/week-1-1.png",
@@ -12,7 +686,7 @@
     },
     {
       "date": "2026-11-08T06:00:00.000Z",
-      "caption": "راجع اتجاه النص، الحقول المختلطة، التنقل، المحتوى الطويل، ولوحة المفاتيح ضمن مسار مستخدم فعلي.",
+      "caption": "اربط CLS بتحميل الخط، واعزل النص المختلط، واختبر الاتجاه والتركيز والتعافي من الخطأ ضمن رحلة فعلية.",
       "linkSticker": "https://thekatanani.com/ar/blog/arabic-interface-review-checklist",
       "assets": [
         "stories/week-2-1.png",
@@ -21,7 +695,7 @@
     },
     {
       "date": "2026-11-15T06:00:00.000Z",
-      "caption": "حدد المطلوب والسياق وحدود التغيير، ثم راجع الفرق واختبر السلوك قبل اعتماد الكود أو المحتوى الناتج.",
+      "caption": "عقد قبول وقالب PR ومثال Server Action مع تحديث متفائل وحالات رفض تجعل التعديل قابلًا للمراجعة.",
       "linkSticker": "https://thekatanani.com/ar/blog/ai-code-change-review-workflow",
       "assets": [
         "stories/week-3-1.png",
@@ -30,8 +704,8 @@
     },
     {
       "date": "2026-11-22T06:00:00.000Z",
-      "caption": "قائمة تساعد العميل والمطور على مراجعة الرحلات الأساسية، إدارة المحتوى، التشغيل، وحدود الدعم المتفق عليها.",
-      "linkSticker": "https://thekatanani.com/ar/blog/website-handoff-and-maintenance-checklist",
+      "caption": "افصل عرض المتجر عن العمليات وتجربة الشراء، ثم صمّم GraphQL وwebhooks بمسار منع تكرار وإعادة محاولة ومطابقة.",
+      "linkSticker": "https://thekatanani.com/ar/blog/shopify-apps-vs-custom-code",
       "assets": [
         "stories/week-4-1.png",
         "stories/week-4-2.png"
