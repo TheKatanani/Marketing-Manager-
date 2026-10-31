@@ -38,5 +38,21 @@ const checks: Record<string,string[]> = {
   "13-recap":["Name the weakest release gate","Collect reproducible evidence","Resolve one unknown today"],
   "14-inquiry":["Share the current bottleneck","List systems and constraints","Agree on an acceptance check"]
 }
-export function artDirection(key = "01-brief"): ArtDirection & { checks:string[] } { return {...(directions[key] ?? directions["01-brief"]),checks:checks[key]??checks["01-brief"]} }
+const standfirsts:Record<string,string>={
+  "01-brief":"منع التكرار قرار خادمي يجب أن يظهر في نطاق التكامل.",
+  "02-proposal":"Prove the contract before committing the delivery date.",
+  "03-coachspace":"A failed request must not look like an empty course list.",
+  "04-rtl":"اختبر الخط المتأخر والنص المختلط ومسار التصحيح.",
+  "05-performance":"Pending, confirmed and rejected are different promises.",
+  "06-marwan":"لغة أخرى، الخدمة نفسها، وسياق يستطيع المستخدم إكماله.",
+  "07-ai-review":"The denied request belongs in the acceptance evidence.",
+  "08-bug-report":"اكتب انتقال الحالة الذي انكسر، ثم أثبت إصلاحه.",
+  "09-content-workflow":"Preserve role, stack and evidence through every rewrite.",
+  "10-handoff":"نجاح الكتابة لا يثبت ظهور المحتوى الجديد للزائر.",
+  "11-shopify-decision":"Scope the layer, the failure path and the operating owner.",
+  "12-mahseri":"اختبر مهمة المحرر من المدخلات إلى الصفحة العامة.",
+  "13-recap":"لكل بوابة قبول دليل يستطيع شخص آخر إعادة اختباره.",
+  "14-inquiry":"Turn the blocked workflow into a bounded delivery plan.",
+}
+export function artDirection(key = "01-brief"): ArtDirection & { checks:string[];standfirst:string } { return {...(directions[key] ?? directions["01-brief"]),checks:checks[key]??checks["01-brief"],standfirst:standfirsts[key]??standfirsts["01-brief"]} }
 export const articleTopic: Record<string, string> = {brief:"01-brief",rtl:"04-rtl",ai:"07-ai-review",shopify:"11-shopify-decision"}

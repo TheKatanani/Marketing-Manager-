@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import { novemberPack } from "./november-2026"
-export const NOVEMBER_REVISION = "2026-10-29-engineering-v2"
+export const NOVEMBER_REVISION = "2026-10-30-darker-sharper-v4"
 
 let schemaEnsured = false
 

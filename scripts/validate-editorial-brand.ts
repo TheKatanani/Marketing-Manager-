@@ -20,7 +20,13 @@ for(const input of inputs) {
   assert.ok(svg.includes(approvedLogoData()),"The original logo bytes are embedded")
   const dimensions=svg.match(/data-brand-logo="approved-primary"[^>]*width="([\d.]+)" height="([\d.]+)"/)!
   assert.equal(Number(dimensions[1])/Number(dimensions[2]),3,"Original logo aspect ratio")
-  assert.ok(!/<(?:linearGradient|radialGradient|filter)\b/.test(svg),"Flat approved brand surfaces")
+  assert.ok(!/<(?:linearGradient|radialGradient|feGaussianBlur|feDropShadow)\b/.test(svg),"Flat approved brand surfaces")
+  const dark=input.kind==="linkedin"||(input.kind==="slide"&&input.number===1)
+  if(dark) {
+    assert.match(svg,/data-canvas="petroleum"/)
+    assert.match(svg,/filter="url\(#brand-white\)"/)
+    assert.ok(!/<rect y="235"/.test(svg),"No white header strip")
+  } else assert.ok(!/filter="url\(#brand-white\)"/.test(svg),"Dark artwork stays unchanged on light canvases")
   assert.ok(!/>MK<|>MOHAMMED KATANANI<|>THE KATANANI</.test(svg),"No replacement wordmark")
   for(const hex of svg.match(/#[a-f\d]{6}\b/gi)||[])assert.ok(allowed.has(hex.toUpperCase()),`Unapproved color: ${hex}`)
 }

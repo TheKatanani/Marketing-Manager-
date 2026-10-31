@@ -103,13 +103,13 @@ export function renderEditorialSvg(input:GraphicInput) {
   if(measure(eyebrow,20)>width)throw Error(`Eyebrow exceeds safe area: ${eyebrow}`)
   const footerY=story?1755:h-80
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-    <metadata>${esc(JSON.stringify({brand:brand.name,revision:brand.revision,logo:brand.logo,logoWidth:logoW,logoHeight:logoH,clearSpace:logoH/4}))}</metadata>
-    <rect width="${w}" height="${h}" fill="${p.white}"/>
-    ${dark?`<rect y="235" width="${w}" height="${h-235}" fill="${p.petroleum}"/>`:""}
+    <metadata>${esc(JSON.stringify({brand:brand.name,revision:brand.revision,logo:brand.logo,logoWidth:logoW,logoHeight:logoH,clearSpace:logoH/4,logoTreatment:dark?"white-alpha":"original"}))}</metadata>
+    ${dark?`<defs><filter id="brand-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter></defs>`:""}
+    <rect data-canvas="${dark?"petroleum":"white"}" width="${w}" height="${h}" fill="${c.paper}"/>
     ${hexagon(w+(article?160:310),h*(story?0.65:0.45),article?420:510,p.sky,dark?0.24:0.9)}
     ${!article&&!story?`<path d="M${w-260} ${h-140}L${w-100} ${h-250}H${w}V${h-140}Z" fill="${p.lilac}" fill-opacity="${dark?0.2:0.22}"/>`:""}
-    <image data-brand-logo="approved-primary" x="${logoX}" y="${logoY}" width="${logoW}" height="${logoH}" preserveAspectRatio="xMidYMid meet" xlink:href="${approvedLogoData()}"/>
-    ${!story?text("NOVEMBER / 2026",w-pad,118,15,p.navy,400,"end",true):""}
+    <image data-brand-logo="approved-primary" x="${logoX}" y="${logoY}" width="${logoW}" height="${logoH}" preserveAspectRatio="xMidYMid meet" ${dark?'filter="url(#brand-white)"':''} xlink:href="${approvedLogoData()}"/>
+    ${!story?text("NOVEMBER / 2026",w-pad,118,15,c.secondary,400,"end",true):""}
     ${article?`<path d="M${pad} 220H${w-pad}" stroke="${p.sky}"/>`:!story?`<path d="M${pad} 223H${w-pad}" stroke="${p.sky}"/>`:""}
     ${text(eyebrow,isRtl(eyebrow)?w-pad:pad,eyebrowY,20,c.secondary,400,isRtl(eyebrow)?"end":"start")}
     ${title.svg}${body.svg}

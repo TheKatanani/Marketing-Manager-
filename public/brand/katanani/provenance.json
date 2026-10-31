@@ -25,7 +25,7 @@
       "source": "01-Logos/monogram-transparent.png"
     }
   ],
-  "revision": "katanani-approved-identity-v3",
+  "revision": "katanani-dark-logo-content-v4",
   "corePalette": [
     "#0A4D68",
     "#D2E5F0",
@@ -40,5 +40,6 @@
     "Noto Sans",
     "Noto Sans Arabic",
     "JetBrains Mono"
-  ]
+  ],
+  "darkLogoTreatment": "User-approved white SVG presentation of the original artwork alpha; no white header band; source PNG unchanged"
 }

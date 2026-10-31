@@ -31,7 +31,7 @@ for(const topic of novemberPack.topics) {
   if(!ig?.slides)continue
   for(const s of ig.slides) write(`editorial/2026-11/${topic.key}/slide-${s.slideNumber}.png`,{kind:"slide",title:s.title,body:s.bodyText,eyebrow:topic.theme,number:s.slideNumber,total:ig.slides.length,topicKey:topic.key})
   const li=topic.versions.find(v=>v.platform==="LINKEDIN")!
-  write(`editorial/2026-11/${topic.key}/linkedin.png`,{kind:"linkedin",title:topic.title,body:artDirection(topic.key).flow.join(" / "),eyebrow:topic.theme,topicKey:topic.key})
+  write(`editorial/2026-11/${topic.key}/linkedin.png`,{kind:"linkedin",title:topic.title,body:artDirection(topic.key).standfirst,eyebrow:topic.theme,topicKey:topic.key})
 }
 for(const [i,a] of novemberPack.articles.entries()) {
   const topicKey=articleTopic[a.key]

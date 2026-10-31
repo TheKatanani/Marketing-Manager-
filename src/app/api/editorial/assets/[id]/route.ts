@@ -18,7 +18,7 @@ export async function GET(request:NextRequest,{params}:{params:Promise<{id:strin
   if(!Number.isInteger(n)||n<1||(version.platform==="INSTAGRAM"&&!slide)||version.platform==="X") return NextResponse.json({error:"Invalid graphic"},{status:400})
   try {
     const topicKey=novemberPack.topics.find(t=>version.post.id.endsWith(`-${t.key}`))?.key
-    const png=renderEditorialPng({kind:version.platform==="INSTAGRAM"?"slide":"linkedin",title:slide?.title??version.post.title,body:slide?.bodyText??artDirection(topicKey).flow.join(" / "),eyebrow:version.post.weekTheme??undefined,number:slide?n:undefined,total:slide?slides.length:undefined,topicKey})
+    const png=renderEditorialPng({kind:version.platform==="INSTAGRAM"?"slide":"linkedin",title:slide?.title??version.post.title,body:slide?.bodyText??artDirection(topicKey).standfirst,eyebrow:version.post.weekTheme??undefined,number:slide?n:undefined,total:slide?slides.length:undefined,topicKey})
     return new NextResponse(new Uint8Array(png),{headers:{"Content-Type":"image/png","Cache-Control":"private, no-store",...(request.nextUrl.searchParams.has("download")?{"Content-Disposition":`attachment; filename="${version.platform.toLowerCase()}-${n}.png"`}:{})}})
   } catch(e) {return NextResponse.json({error:e instanceof Error?e.message:"Could not render asset"},{status:422})}
 }
